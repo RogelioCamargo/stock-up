@@ -1,7 +1,7 @@
 <section>
-	<%= authenticity_token %>
 	<h1>Create User</h1>
 	<form action="<%= users_url%>" method="post">
+		<%= authenticity_token %>
 		<label for="user_username">Username</label>
 		<input type="text" name="user[username]" id="user_username">
 		<br>
