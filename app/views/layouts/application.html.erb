@@ -9,7 +9,20 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
+	<nav>
+		<% if logged_in? %>
+			<form action="<%= session_url %>" method="post">
+				<%= authenticity_token  %>
+				<input type="hidden" name="_method" value="delete">
+				<input type="submit" value="Logout">
+			</form>
+		<% else %>
+			<div>
+				<%= link_to "Login", new_session_url %>
+				<%= link_to "Register", new_user_url %>
+			</div>
+		<% end %>
+	</nav>
   <body>
     <%= yield %>
   </body>
