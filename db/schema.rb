@@ -19,7 +19,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_25_172318) do
     t.string "password_digest", null: false
     t.string "session_token", null: false
     t.string "email", null: false
-    t.string "slack", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
