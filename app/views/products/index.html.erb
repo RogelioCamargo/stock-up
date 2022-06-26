@@ -1,0 +1,70 @@
+<section>
+	<h1>Products</h1>
+	<div>
+		<% if @products.empty? %>
+			<p>There are none.</p>
+		<% else %>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Quantity</th>
+						<th>Category</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @products.each do |product| %>
+						<tr>
+							<td><%= product.name %></td>
+							<td>
+								<form action="<%= product_url(product) %>" method="post">
+									<input type="hidden" name="_method" value="patch">
+									<%= authenticity_token %>
+									<input type="number" name="product[quantity]" value="<%= product.quantity %>">
+									<input type="submit" value="Update">
+								</form>
+							</td>
+							<td><%= product.category.name %></td>
+							<td>
+								<%= link_to "Update", edit_product_url(product) %>
+								<form action="<%= product_url(product) %>" method="post">
+									<input type="hidden" name="_method" value="delete">
+									<%= authenticity_token %>
+									<input type="submit" value="Delete">
+								</form>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		<% end %>
+	</ul>
+</section>
+<section>
+	<%= render "shared/errors" %>
+	<form action="<%= products_url %>" method="post">
+		<%= authenticity_token %>
+		<label for="product_name">Name</label>
+		<input type="text" name="product[name]" id="product_name">
+		<br>
+		<label for="product_quantity">Quantity</label>
+		<input type="number" name="product[quantity]" id="product_quantity">
+		<br>
+		<%# <label for="product_image_url">Image URL</label>
+		<input type="text" name="product[image_url]" id="product_image_url">
+		<br>
+		<label for="product_shop_url">Shop URL</label>
+		<input type="text" name="product[shop_url]" id="product_shop_url">
+		<br> %>
+		<label for="product_category">Category</label>
+		<select name="product[category_id]" id="product_category">
+			<option selected disabled>-- Select Category --</option>
+			<% @categories.each do |category| %>
+				<option value="<%= category.id %>"><%= category.name %></option>
+			<% end %>
+		</select>
+		<br>
+		<input type="submit" value="Create">
+	</form>
+</section>
