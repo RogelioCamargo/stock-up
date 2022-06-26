@@ -1,0 +1,14 @@
+<div>
+	<% if products.empty? %>
+		<p>There are none.</p>
+	<% else %>
+		<table>
+			<%= products_table_head %>
+			<tbody>
+				<% products.each do |product| %>
+					<%= products_table_row product %>
+				<% end %>
+			</tbody>
+		</table>
+	<% end %>
+</div>

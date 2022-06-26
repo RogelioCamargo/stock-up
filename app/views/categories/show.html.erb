@@ -7,51 +7,5 @@
 			<%= link_to category.name, category_url(category) %>
 		<% end %>
 	</ul>
-	<div>
-		<% if products.empty? %>
-			<p>There are none.</p>
-		<% else %>
-			<table>
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Quantity</th>
-						<th>Category</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% products.each do |product| %>
-						<tr>
-							<td><%= product.name %></td>
-							<td>
-								<form action="<%= product_url(product) %>" method="post">
-									<input type="hidden" name="_method" value="patch">
-									<%= authenticity_token %>
-									<input type="number" name="product[quantity]" value="<%= product.quantity %>">
-									<input type="submit" value="Update">
-								</form>
-							</td>
-							<td><%= product.category.name %></td>
-							<td>
-								<%= edit_icon edit_product_url(product) %>
-								<%= delete_icon product_url(product), product %>
-								<% if product.status == 0 %>
-									<form action="<%= order_more_product_url(product) %>" method="post">
-										<%= authenticity_token %>
-										<input type="submit" value="Order More">
-									</form>
-								<% else %>
-									<form action="<%= ordered_more_product_url(product) %>" method="post">
-										<%= authenticity_token %>
-										<input type="submit" value="Items Arrived">
-									</form>
-								<% end %>
-							</td>
-						</tr>
-					<% end %>
-				</tbody>
-			</table>
-		<% end %>
-	</div>
+	<%= render 'shared/products', products: products %>
 </section>

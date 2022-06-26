@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
 	def create 
 		@product = Product.new(product_params)
 		if @product.save 
-			redirect_to products_url
+			redirect_to category_url(@product.category_id)
 		else
 			flash[:errors] = @product.errors.full_messages
 			redirect_to products_url, status: :unprocessable_entity
@@ -45,7 +45,7 @@ class ProductsController < ApplicationController
 	def update 
 		@product = Product.find(params[:id])
 		if @product.update(product_params)
-			redirect_to products_url
+			redirect_to category_url(@product.category_id)
 		else
 			flash.now[:errors] = @product.errors.full_messages
 			render :edit, status: :unprocessable_entity

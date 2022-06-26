@@ -10,6 +10,10 @@
     <%= javascript_importmap_tags %>
   </head>
 	<nav>
+		<%= link_to "Order List", order_list_products_url %>
+		<%= link_to "Products", products_url %>
+		<%= link_to "Categories", categories_url %>
+		<%= link_to "Profile", user_url(current_user) %>
 		<% if logged_in? %>
 			<form action="<%= session_url %>" method="post">
 				<%= authenticity_token  %>
@@ -22,10 +26,6 @@
 				<%= link_to "Register", new_user_url %>
 			</div>
 		<% end %>
-		<%= link_to "Order List", order_list_products_url %>
-		<%= link_to "Products", products_url %>
-		<%= link_to "Categories", categories_url %>
-		<%= link_to "Profile", user_url(current_user) %>
 	</nav>
   <body>
     <%= yield %>
