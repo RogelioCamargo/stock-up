@@ -15,6 +15,23 @@ class ProductsController < ApplicationController
 		end
 	end
 
+	def order_list 
+		@products = Product.where(status: 1).includes(:category)
+		render :order_list
+	end
+
+	def order_more 
+		product = Product.find(params[:id])
+		product.update(status: 1)
+		redirect_to category_url(product.category_id)
+	end
+
+	def ordered_more 
+		product = Product.find(params[:id])
+		product.update(status: 0)
+		redirect_to category_url(product.category_id)
+	end
+
 	def edit 
 		@product = Product.find(params[:id])
 		render :edit
@@ -38,7 +55,7 @@ class ProductsController < ApplicationController
 	def destroy
 		product = Product.find(params[:id])
 		product.destroy
-		redirect_to products_url 
+		redirect_to category_url(product.category_id) 
 	end 
 
 	private 
