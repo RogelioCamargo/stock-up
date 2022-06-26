@@ -6,5 +6,13 @@ Rails.application.routes.draw do
 	resources :users, only: %i(new create show)
 	resource :session, only: %i(new create destroy)
 	resources :categories, except: %i(new)
-	resources :products, expect: %i(new)
+	resources :products, expect: %i(new) do 
+		collection do 
+			get :order_list
+		end
+		member do 
+			post :order_more
+			post :ordered_more
+		end
+	end
 end
