@@ -1,0 +1,10 @@
+<section>
+	<h1>Edit Category</h1>
+	<form action="<%= category_url(@category) %>" method="post">
+		<input type="hidden" name="_method" value="patch">
+		<%= authenticity_token %>
+		<label for="category_name">Name</label>
+		<input type="text" name="category[name]" id="category_name" value="<%= @category.name %>">
+		<input type="submit" value="Update">
+	</form>
+</section>
