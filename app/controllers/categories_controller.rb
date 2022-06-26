@@ -1,12 +1,11 @@
 class CategoriesController < ApplicationController
 	def index 
-		@categories = Category.all 
-		render :index
+		redirect_to category_url(Category.first)
 	end
 
 	def show 
-		@cateogry = Category.find(params[:id])
-		@products = @category.products 
+		@categories = Category.all 
+		@category = Category.find(params[:id])
 		render :show 
 	end
 
@@ -31,7 +30,7 @@ class CategoriesController < ApplicationController
 			redirect_to categories_url
 		else 
 			flash.now[:errors] = @category.errors.full_messages
-			render :index,  status: :unprocessable_entity
+			render :edit,  status: :unprocessable_entity
 		end
 	end
 
