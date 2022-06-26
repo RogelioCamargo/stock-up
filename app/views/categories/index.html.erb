@@ -4,19 +4,29 @@
 		<% if @categories.empty? %>
 			<p>There are none.</p>
 		<% else %>
-			<ul>
-				<% @categories.each do |category| %>
-					<li>
-						<span><%= category.name %></span>
-						<%= link_to "Update", edit_category_url(category) %>
-						<form action="<%= category_url(category) %>" method="post">
-							<input type="hidden" name="_method" value="delete">
-							<%= authenticity_token %>
-							<input type="submit" value="Delete">
-						</form>
-					</li>
-				<% end %>
-			</ul>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @categories.each do |category| %>
+						<tr>
+							<td><%= category.name %></td>
+							<td>
+								<%= link_to "Update", edit_category_url(category) %>
+								<form action="<%= category_url(category) %>" method="post">
+									<input type="hidden" name="_method" value="delete">
+									<%= authenticity_token %>
+									<input type="submit" value="Delete">
+								</form>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
 		<% end %>
 	</ul>
 </section>
