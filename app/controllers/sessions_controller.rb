@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 			params[:user][:password]
 		)
 		if user.nil? 
-			flash.now[:errors] << 'Incorrect username and/or password'
+			flash.now[:errors] = ['Incorrect username and/or password']
 			render :new, status: :unprocessable_entity
 		else 
 			login_user!(user)

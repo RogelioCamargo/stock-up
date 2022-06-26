@@ -1,5 +1,6 @@
 <section>
 	<h1>Create User</h1>
+	<%= render "shared/errors" %>
 	<form action="<%= users_url%>" method="post">
 		<%= authenticity_token %>
 		<label for="user_username">Username</label>

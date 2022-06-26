@@ -1,5 +1,6 @@
 <section>
 	<h1>Welcome Back!</h1>
+	<%= render "shared/errors" %>
 	<form action="<%= session_url %>" method="post">
 		<%= authenticity_token %>
 		<label for="user_username">Username</label>
