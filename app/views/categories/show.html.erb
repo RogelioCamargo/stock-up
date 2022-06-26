@@ -34,12 +34,19 @@
 							</td>
 							<td><%= product.category.name %></td>
 							<td>
-								<%= link_to "Update", edit_product_url(product) %>
-								<form action="<%= product_url(product) %>" method="post">
-									<input type="hidden" name="_method" value="delete">
-									<%= authenticity_token %>
-									<input type="submit" value="Delete">
-								</form>
+								<%= edit_icon edit_product_url(product) %>
+								<%= delete_icon product_url(product), product %>
+								<% if product.status == 0 %>
+									<form action="<%= order_more_product_url(product) %>" method="post">
+										<%= authenticity_token %>
+										<input type="submit" value="Order More">
+									</form>
+								<% else %>
+									<form action="<%= ordered_more_product_url(product) %>" method="post">
+										<%= authenticity_token %>
+										<input type="submit" value="Items Arrived">
+									</form>
+								<% end %>
 							</td>
 						</tr>
 					<% end %>

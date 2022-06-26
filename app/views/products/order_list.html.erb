@@ -1,0 +1,43 @@
+<section>
+	<h1>Order List</h1>
+	<div>
+		<% if @products.empty? %>
+			<p>There are none.</p>
+		<% else %>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Quantity</th>
+						<th>Category</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @products.each do |product| %>
+						<tr>
+							<td><%= product.name %></td>
+							<td>
+								<form action="<%= product_url(product) %>" method="post">
+									<input type="hidden" name="_method" value="patch">
+									<%= authenticity_token %>
+									<input type="number" name="product[quantity]" value="<%= product.quantity %>">
+									<input type="submit" value="Update">
+								</form>
+							</td>
+							<td><%= product.category.name %></td>
+							<td>
+								<%= link_to "Update", edit_product_url(product) %>
+								<form action="<%= product_url(product) %>" method="post">
+									<input type="hidden" name="_method" value="delete">
+									<%= authenticity_token %>
+									<input type="submit" value="Delete">
+								</form>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		<% end %>
+	</div>
+</section>
