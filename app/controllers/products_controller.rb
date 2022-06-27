@@ -1,4 +1,9 @@
+require 'httparty'
+require 'dotenv'
+
 class ProductsController < ApplicationController
+	include HTTParty
+
 	def index 
 		@products = Product.all.includes(:category)
 		@categories = Category.all 
@@ -30,6 +35,13 @@ class ProductsController < ApplicationController
 		product = Product.find(params[:id])
 		product.update(status: 0)
 		redirect_to category_url(product.category_id)
+	end
+
+	def request_products 
+		product_names = Product.where(status: 1).map(&:name)
+		HTTParty.post(ENV["SLACK_WEBHOOK_URL"], 
+			body: { text: product_names.join("\n") }.to_json, 
+			header: { 'Content-Type': 'application/json' })
 	end
 
 	def edit 

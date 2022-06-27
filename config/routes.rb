@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 	resources :products, expect: %i(new) do 
 		collection do 
 			get :order_list
+			post :request_products
 		end
 		member do 
 			post :order_more
