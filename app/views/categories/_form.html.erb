@@ -1,4 +1,4 @@
-<section>
+<div>
 	<%= render "shared/errors" %>
 	<form action="<%= categories_url %>" method="post">
 		<%= authenticity_token %>
@@ -6,4 +6,4 @@
 		<input type="text" name="category[name]" id="category_name">
 		<input type="submit" value="Create">
 	</form>
-</section>
+</div>
