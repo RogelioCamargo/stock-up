@@ -1,3 +1,10 @@
-<h1>Profile</h1>
+<%= page_title "Profile" %>
 
-<p>Welcome, <%= @user.username.capitalize %></p>
+<p>Username: <%= @user.username.capitalize %></p>
+<p>Email: <%= @user.email %></p>
+
+<form class="d-flex" action="<%= session_url %>" method="post">
+	<%= authenticity_token  %>
+	<input type="hidden" name="_method" value="delete">
+	<button class="btn btn-primary" type="submit">Logout</button>
+</form>
