@@ -2,30 +2,34 @@
 	<%= render "shared/errors" %>
 	<form action="<%= products_url %>" method="post">
 		<%= authenticity_token %>
-		<label for="product_name">Name</label>
-		<input type="text" name="product[name]" id="product_name">
-		<br>
-		<label for="product_quantity">Quantity</label>
-		<input type="number" name="product[quantity]" id="product_quantity">
-		<br>
-		<label for="product_image_url">Image URL</label>
-		<input type="text" name="product[image_url]" id="product_image_url">
-		<br>
-		<label for="product_shop_url">Shop URL</label>
-		<input type="text" name="product[shop_url]" id="product_shop_url">
-		<br>
-		<label for="product_category">Category</label>
-		<select name="product[category_id]" id="product_category">
-			<option selected disabled>-- Select Category --</option>
-			<% categories.each do |category| %>
-				<option 
-					value="<%= category.id %>"
-					<%= !current_category_id.nil? && (category.id == current_category_id && "selected") %>>
-						<%= category.name %>
-				</option>
-			<% end %>
-		</select>
-		<br>
-		<input type="submit" value="Create">
+		<table class="table mt-n2">
+			<tbody>
+				<tr>
+					<td class='col-5'>
+						<input type="text" placeholder="e.g. 4x4 Poly Bags" class="form-control form-control-sm" name="product[name]" id="product_name">
+					</td>
+					<td class='col-2'>
+						<input type="number" placeholder="e.g. 10" class="form-control form-control-sm" name="product[quantity]" id="product_quantity">
+					</td>
+					<td class='col'>
+						<select class="form-select form-select-sm" name="product[category_id]" id="product_category">
+							<option selected disabled></option>
+							<% categories.each do |category| %>
+								<option 
+									value="<%= category.id %>"
+									<%= !current_category_id.nil? && (category.id == current_category_id && "selected") %>>
+										<%= category.name %>
+								</option>
+							<% end %>
+						</select>
+					</td>
+					<td class='col-2'>
+						<div class="span3">
+							<button class="btn btn-primary btn-sm" type="submit">Create Product</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</form>
 </div>
