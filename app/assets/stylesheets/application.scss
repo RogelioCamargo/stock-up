@@ -1,1 +1,11 @@
 @import "bootstrap";
+
+.mt-n2 {
+	margin-top: -0.5rem !important;
+}
+
+.horizontal-scroll {
+	display: flex;
+	flex-wrap: nowrap;
+	overflow-x: auto;
+}
