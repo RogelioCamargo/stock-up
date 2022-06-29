@@ -66,10 +66,19 @@ class ProductsController < ApplicationController
 	def update 
 		@product = Product.find(params[:id])
 		if @product.update(product_params)
-			redirect_to category_url(@product.category_id)
+			if params[:from_category]
+				redirect_to category_url(@product.category_id)
+			else
+				redirect_to products_url
+			end
 		else
-			flash.now[:errors] = @product.errors.full_messages
-			render :edit, status: :unprocessable_entity
+			if params[:from_category]
+				flash[:errors] = @product.errors.full_messages
+				redirect_to category_url(@product.category_id)
+			else
+				flash.now[:errors] = @product.errors.full_messages
+				render :index
+			end
 		end
 	end
 

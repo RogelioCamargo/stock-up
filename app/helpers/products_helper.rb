@@ -11,11 +11,11 @@ module ProductsHelper
 		</thead>".html_safe
 	end
 
-	def products_table_row(product)
+	def products_table_row(product, from_category = false)
 		"<tr>
 			<td>#{product.name}</td>
 			<td>
-				#{product_quantity_form product}
+				#{product_quantity_form(product, from_category)}
 			</td>
 			<td class='text-nowrap'>#{product.category.name}</td>
 			<td class='d-flex'>
@@ -30,8 +30,8 @@ module ProductsHelper
 		</tr>".html_safe
 	end
 
-	def product_quantity_form(product)
-		"<form action='#{product_url(product)}' method='post'>
+	def product_quantity_form(product, from_category = false)
+		"<form action='#{product_url(product)}#{from_category && "?from_category=true"}' method='post'>
 			<input type='hidden' name='_method' value='patch'>
 			#{authenticity_token}
 			<div class='d-flex'>
