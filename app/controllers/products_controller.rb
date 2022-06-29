@@ -20,9 +20,9 @@ class ProductsController < ApplicationController
 		end
 	end
 
-	def order_list 
+	def dashboard 
 		@products = Product.where(status: 1).includes(:category)
-		render :order_list
+		render :dashboard
 	end
 
 	def order_more 

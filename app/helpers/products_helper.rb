@@ -43,7 +43,7 @@ module ProductsHelper
 	def product_order_more_form(product)
 		"<form action='#{order_more_product_url(product)}' method='post'>
 			#{authenticity_token}
-			<button class='btn btn-primary btn-sm' type='submit'>
+			<button class='btn btn-primary btn-sm btn-w-md' type='submit'>
 				Request More
 			</button>
 		</form>".html_safe
@@ -52,7 +52,7 @@ module ProductsHelper
 	def product_ordered_more_form(product) 
 		"<form action='#{ordered_more_product_url(product)}' method='post'>
 			#{authenticity_token}
-			<button class='btn btn-primary btn-sm' type='submit'>
+			<button class='btn btn-primary btn-sm btn-w-md' type='submit'>
 				Order Placed
 			</button>
 		</form>".html_safe

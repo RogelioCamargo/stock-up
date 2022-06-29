@@ -9,13 +9,14 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body>
+  <body class="fs-7-rem">
 		<nav class="navbar navbar-dark navbar-expand-lg bg-primary">
 			<div class="container-lg my-1">
 				<a class="navbar-brand" href="/">
 					<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
 						<path fill="white" d="M21.698 10.658l2.302 1.342-12.002 7-11.998-7 2.301-1.342 9.697 5.658 9.7-5.658zm-9.7 10.657l-9.697-5.658-2.301 1.343 11.998 7 12.002-7-2.302-1.342-9.7 5.657zm12.002-14.315l-12.002-7-11.998 7 11.998 7 12.002-7z"/>
 					</svg>
+					<span class="ms-1">StockUp</span>
 				</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -23,13 +24,13 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="<%= order_list_products_url %>">Order List</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link active" href="<%= products_url %>">Products</a>
+							<a class="nav-link active" aria-current="page" href="<%= dashboard_products_url %>">Dashboard</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link active" href="<%= categories_url %>">Categories</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" href="<%= products_url %>">Products</a>
 						</li>
 						<% if logged_in? %>
 							<li class="nav-item">

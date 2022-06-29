@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 	resources :categories, except: %i(new)
 	resources :products, expect: %i(new) do 
 		collection do 
-			get :order_list
+			get :dashboard
 			post :request_products
 		end
 		member do 
