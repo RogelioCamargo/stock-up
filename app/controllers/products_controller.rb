@@ -13,10 +13,19 @@ class ProductsController < ApplicationController
 	def create 
 		@product = Product.new(product_params)
 		if @product.save 
-			redirect_to category_url(@product.category_id)
+			if params[:from_category]
+				redirect_to category_url(@product.category_id)
+			else
+				redirect_to products_url
+			end
 		else
-			flash[:errors] = @product.errors.full_messages
-			redirect_to products_url
+			if params[:from_category]
+				flash[:errors] = @product.errors.full_messages
+				redirect_to category_url(@product.category_id)
+			else
+				flash.now[:errors] = @product.errors.full_messages
+				render :index
+			end
 		end
 	end
 

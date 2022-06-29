@@ -1,8 +1,6 @@
-<% query = current_category_id.nil? ? "" : "?from_category=true" %>
-
 <div class="d-none d-md-block">
 	<%= render "shared/errors" %>
-	<form action="<%= products_url + query %>" method="post">
+	<form action="<%= products_url + "?from_category" %>" method="post">
 		<%= authenticity_token %>
 		<table class="table mt-n2">
 			<tbody>
