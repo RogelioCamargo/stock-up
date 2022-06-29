@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
 			redirect_to category_url(@product.category_id)
 		else
 			flash[:errors] = @product.errors.full_messages
-			redirect_to products_url, status: :unprocessable_entity
+			redirect_to products_url
 		end
 	end
 

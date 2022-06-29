@@ -1,11 +1,23 @@
 @import "bootstrap";
 
+.html {
+	font-size: 16px;
+}
+
 .mt-n2 {
 	margin-top: -0.5rem !important;
+}
+
+.btn-w-md {
+	width: 7rem;
 }
 
 .horizontal-scroll {
 	display: flex;
 	flex-wrap: nowrap;
 	overflow-x: auto;
+}
+
+.fs-7-rem {
+	font-size: 0.85rem;
 }

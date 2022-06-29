@@ -2,12 +2,38 @@
 	<% if products.empty? %>
 		<div class="my-3">No products at the moment.</div>
 	<% else %>
-	<div class="table-responsive">
+	<div class="table-responsive d-none d-md-block">
 		<table class="table table-hover align-middle">
 			<%= products_table_head %>
 			<tbody>
 				<% products.each do |product| %>
 					<%= products_table_row product %>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div class="d-md-none">
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="col-4" scope='col'>Name</th>
+					<th scope='col'>Quantity</th>
+					<th scope='col'>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% products.each do |product| %>
+					<tr scope='row'>
+						<td><%= product.name%></td>
+						<td>
+							<%= product_quantity_form product%>
+						</td>
+						<td>
+							<%= product.status == 0 ?
+								product_order_more_form(product) :
+								product_ordered_more_form(product)%>
+						</td>
+					</tr>
 				<% end %>
 			</tbody>
 		</table>

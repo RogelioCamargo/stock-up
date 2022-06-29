@@ -1,9 +1,0 @@
-<section>
-	<div>
-		<%= page_title "Order List" %>
-		<form class='mt-n2 mb-3' action="<%= request_products_products_url %>" method="post">
-			<button class='btn btn-primary btn-sm' type="submit">Request Products</button>
-		</form>
-	</div>
-	<%= render 'shared/products', products: @products %>
-</section>

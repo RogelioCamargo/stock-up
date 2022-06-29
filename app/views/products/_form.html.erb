@@ -1,4 +1,4 @@
-<div>
+<div class="d-none d-md-block">
 	<%= render "shared/errors" %>
 	<form action="<%= products_url %>" method="post">
 		<%= authenticity_token %>
@@ -24,12 +24,44 @@
 						</select>
 					</td>
 					<td class='col-2'>
-						<div class="span3">
-							<button class="btn btn-primary btn-sm" type="submit">Create Product</button>
+						<div>
+							<button class="btn btn-primary btn-sm btn-w-md" type="submit">Create</button>
 						</div>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+	</form>
+</div>
+<div class="d-md-none">
+	<%= render "shared/errors" %>
+	<form class="mt-n2" action="<%= products_url %>" method="post">
+		<%= authenticity_token %>
+		<div class="d-flex w-100">
+			<div class="d-flex flex-column flex-grow-1">
+				<label for="form-label">Name</label>
+				<input type="text" placeholder="e.g. 4x4 Poly Bags" class="form-control form-control-sm" name="product[name]" id="product_name">
+			</div>
+			<div class="ms-1 w-25">
+				<label for="form-label">Quantity</label>
+				<input type="number" placeholder="e.g. 10" class="form-control form-control-sm" name="product[quantity]" id="product_quantity">
+			</div>
+		</div>
+		<div class="d-flex w-100 align-items-end">
+			<div class="d-flex flex-column flex-grow-1">
+				<label for="form-label">Category</label>
+				<select class="form-select form-select-sm" name="product[category_id]" id="product_category">
+					<option selected disabled></option>
+					<% categories.each do |category| %>
+						<option 
+							value="<%= category.id %>"
+							<%= !current_category_id.nil? && (category.id == current_category_id && "selected") %>>
+								<%= category.name %>
+						</option>
+					<% end %>
+				</select>
+			</div>
+			<button class="btn btn-primary btn-sm ms-1" type="submit">Create</button>
+		</div>
 	</form>
 </div>
