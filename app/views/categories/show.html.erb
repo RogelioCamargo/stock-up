@@ -3,7 +3,7 @@
 
 <section>
 	<%= page_title "Categories" %>
-	<ul class="nav nav-pills horizontal-scroll py-2">
+	<ul class="nav horizontal-scroll nav-pills pb-2">
 		<% @categories.each do |category| %>
 			<li class="nav-item">
 				<a class="nav-link text-nowrap <%= current_category.id == category.id && "active" %>" href="<%= category_url(category) %>"><%= category.name %></a>

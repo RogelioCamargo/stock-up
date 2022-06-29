@@ -16,8 +16,7 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th class="col-4" scope='col'>Name</th>
-					<th scope='col'>Quantity</th>
+					<th class="w-60" scope='col'>Name</th>
 					<th scope='col'>Actions</th>
 				</tr>
 			</thead>
@@ -25,13 +24,11 @@
 				<% products.each do |product| %>
 					<tr scope='row'>
 						<td><%= product.name%></td>
-						<td>
+						<td class="d-flex">
 							<%= product_quantity_form product%>
-						</td>
-						<td>
 							<%= product.status == 0 ?
-								product_order_more_form(product) :
-								product_ordered_more_form(product)%>
+								product_order_more_form_mobile(product) :
+								product_ordered_more_form_mobile(product)%>
 						</td>
 					</tr>
 				<% end %>

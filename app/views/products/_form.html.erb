@@ -5,13 +5,13 @@
 		<table class="table mt-n2">
 			<tbody>
 				<tr>
-					<td class='col-5'>
+				<td class='col-5'>
 						<input type="text" placeholder="e.g. 4x4 Poly Bags" class="form-control form-control-sm" name="product[name]" id="product_name">
 					</td>
 					<td class='col-2'>
 						<input type="number" placeholder="e.g. 10" class="form-control form-control-sm" name="product[quantity]" id="product_quantity">
 					</td>
-					<td class='col'>
+					<td>
 						<select class="form-select form-select-sm" name="product[category_id]" id="product_category">
 							<option selected disabled></option>
 							<% categories.each do |category| %>
@@ -23,9 +23,9 @@
 							<% end %>
 						</select>
 					</td>
-					<td class='col-2'>
+					<td>
 						<div>
-							<button class="btn btn-primary btn-sm btn-w-md" type="submit">Create</button>
+							<button class="btn btn-primary btn-sm w-7-rem" type="submit">Create</button>
 						</div>
 					</td>
 				</tr>
