@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
 	def index 
-		redirect_to category_url(Category.first)
+		@categories = Category.all
+		render :index
 	end
 
 	def show 
