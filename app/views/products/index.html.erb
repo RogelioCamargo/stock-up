@@ -1,5 +1,7 @@
 <section>
-	<%= page_title "Products" %>
+	<div class="mt-4 mb-2">
+		<%= page_title "Products" %>
+	</div>
 	<%= render 'shared/products', products: @products, location: 2 %>
 </section>
 <%= render 'form', categories: @categories, current_category_id: nil, location: 2 %>

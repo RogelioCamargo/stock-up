@@ -2,7 +2,12 @@
 <% current_category = @category %>
 
 <section>
-	<%= page_title "Categories" %>
+	<div class="d-flex justify-content-between mt-4 mb-2">
+		<%= page_title "Categories" %>
+		<div>
+			<a class="btn btn-primary btn-sm w-7-rem" href="<%= categories_url %>">Manage</a>
+		</div>
+	</div>
 	<ul class="nav horizontal-scroll nav-pills pb-2">
 		<% @categories.each do |category| %>
 			<li class="nav-item">

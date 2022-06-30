@@ -1,10 +1,26 @@
-<%= page_title "Profile" %>
-
-<p>Username: <%= @user.username.capitalize %></p>
-<p>Email: <%= @user.email %></p>
-
-<form class="d-flex" action="<%= session_url %>" method="post">
-	<%= authenticity_token  %>
-	<input type="hidden" name="_method" value="delete">
-	<button class="btn btn-primary" type="submit">Logout</button>
-</form>
+<div class="d-flex justify-content-between mt-4 mb-2">
+	<%= page_title "Profile" %>
+	<form action="<%= session_url %>" method="post">
+		<%= authenticity_token  %>
+		<input type="hidden" name="_method" value="delete">
+		<button class="btn btn-primary btn-sm w-7-rem" type="submit">Logout</button>
+	</form>
+</div>
+<div>
+	<div class="d-flex">
+		<div class="w-5-rem fw-bold">
+			Username:
+		</div>
+		<div>
+			<%= @user.username %>
+		</div>
+	</div>
+	<div class="d-flex">
+		<div class="w-5-rem fw-bold">
+			Email:
+		</div>
+		<div>
+			<%= @user.email %>
+		</div>
+	</div>
+</div>
