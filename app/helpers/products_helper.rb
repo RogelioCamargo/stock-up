@@ -20,8 +20,10 @@ module ProductsHelper
 			<td class='text-nowrap'>#{product.category.name}</td>
 			<td class='d-flex'>
 				#{product.status == 0 ?
-					request_button(product) :
-					received_button(product)}
+					request_button(product, from_category) :
+					(product.status == 1 ? 
+					ordered_button(product, from_category) :
+					received_button(product, from_category))}
 			</td>
 			<td class='text-nowrap'>
 				#{product.updated_at.strftime("%m/%d/%Y")}
@@ -45,8 +47,8 @@ module ProductsHelper
 		</form>".html_safe
 	end	
 
-	def request_button_mobile(product)
-		"<form action='#{order_more_product_url(product)}' method='post'>
+	def request_button_mobile(product, from_category)
+		"<form action='#{order_product_url(product)}#{from_category ? "?from_category=true" : ""}' method='post'>
 			#{authenticity_token}
 			<button class='btn btn-primary ms-1 btn-sm' type='submit'>
 				#{request_icon}
@@ -54,8 +56,8 @@ module ProductsHelper
 		</form>".html_safe
 	end
 
-	def request_button(product)
-		"<form action='#{order_more_product_url(product)}' method='post'>
+	def request_button(product, from_category)
+		"<form action='#{order_product_url(product)}#{from_category ? "?from_category=true" : ""}' method='post'>
 			#{authenticity_token}
 			<button class='btn btn-primary btn-sm text-nowrap w-7-rem' type='submit'>
 				#{request_icon}
@@ -64,8 +66,8 @@ module ProductsHelper
 		</form>".html_safe
 	end
 
-	def ordered_button_mobile(product) 
-		"<form action='#{ordered_more_product_url(product)}' method='post'>
+	def ordered_button_mobile(product, from_category) 
+		"<form action='#{ordered_product_url(product)}#{from_category ? "?from_category=true" : ""}' method='post'>
 			#{authenticity_token}
 			<button class='btn btn-primary ms-1 btn-sm' type='submit'>
 				#{ordered_icon}
@@ -73,18 +75,18 @@ module ProductsHelper
 		</form>".html_safe
 	end
 
-	def ordered_button(product) 
-		"<form action='#{ordered_more_product_url(product)}' method='post'>
+	def ordered_button(product, from_category) 
+		"<form action='#{ordered_product_url(product)}#{from_category ? "?from_category=true" : ""}' method='post'>
 			#{authenticity_token}
-			<button class='btn btn-primary ms-1 btn-sm w-7-rem' type='submit'>
+			<button class='btn btn-primary btn-sm text-nowrap w-7-rem' type='submit'>
 				#{ordered_icon}
 				<span class='ms-1'>Ordered</span>
 			</button>
 		</form>".html_safe
 	end
 
-	def received_button_mobile(product) 
-		"<form action='#{ordered_more_product_url(product)}' method='post'>
+	def received_button_mobile(product, from_category) 
+		"<form action='#{received_product_url(product)}#{from_category ? "?from_category=true" : ""}' method='post'>
 			#{authenticity_token}
 			<button class='btn btn-primary ms-1 btn-sm' type='submit'>
 				#{received_icon}
@@ -92,10 +94,10 @@ module ProductsHelper
 		</form>".html_safe
 	end
 
-	def received_button(product) 
-		"<form action='#{ordered_more_product_url(product)}' method='post'>
+	def received_button(product, from_category) 
+		"<form action='#{received_product_url(product)}#{from_category ? "?from_category=true" : ""}' method='post'>
 			#{authenticity_token}
-			<button class='btn btn-primary btn-sm w-7-rem' type='submit'>
+			<button class='btn btn-primary btn-sm text-nowrap w-7-rem' type='submit'>
 				#{received_icon}
 				<span class='ms-1'>Received</span>
 			</button>

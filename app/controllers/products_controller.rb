@@ -34,13 +34,19 @@ class ProductsController < ApplicationController
 		render :dashboard
 	end
 
-	def order_more 
+	def order 
 		product = Product.find(params[:id])
 		product.update(status: 1)
 		redirect_to category_url(product.category_id)
 	end
 
-	def ordered_more 
+	def ordered 
+		product = Product.find(params[:id])
+		product.update(status: 2)
+		redirect_to category_url(product.category_id)
+	end
+
+	def received 
 		product = Product.find(params[:id])
 		product.update(status: 0)
 		redirect_to category_url(product.category_id)

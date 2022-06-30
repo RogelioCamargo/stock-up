@@ -12,8 +12,9 @@ Rails.application.routes.draw do
 			post :request_products
 		end
 		member do 
-			post :order_more
-			post :ordered_more
+			post :order
+			post :ordered
+			post :received 
 		end
 	end
 end

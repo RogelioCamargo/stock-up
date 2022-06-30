@@ -27,8 +27,10 @@
 						<td class="d-flex">
 							<%= product_quantity_form product%>
 							<%= product.status == 0 ?
-								request_button_mobile(product) :
-								received_button_mobile(product)%>
+								request_button_mobile(product, from_category) :
+								(product.status == 1 ? 
+								ordered_button(product, from_category) :
+								received_button_mobile(product, from_category))%>
 						</td>
 					</tr>
 				<% end %>
