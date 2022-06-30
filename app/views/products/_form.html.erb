@@ -4,35 +4,36 @@
 	<%= render "shared/errors" %>
 	<form action="<%= products_url + query %>" method="post">
 		<%= authenticity_token %>
-		<table class="table mt-n2">
-			<tbody>
-				<tr>
-					<td class="w-40">
-						<input type="text" placeholder="e.g. 4x4 Poly Bags" class="form-control form-control-sm" name="product[name]" id="product_name">
-					</td>
-					<td class="w-15">
-						<input type="number" placeholder="e.g. 10" class="form-control form-control-sm" name="product[quantity]" id="product_quantity">
-					</td>
-					<td>
-						<select class="form-select form-select-sm" name="product[category_id]" id="product_category">
-							<option selected disabled></option>
-							<% categories.each do |category| %>
-								<option 
-									value="<%= category.id %>"
-									<%= !current_category_id.nil? && (category.id == current_category_id && "selected") %>>
-										<%= category.name %>
-								</option>
-							<% end %>
-						</select>
-					</td>
-					<td>
-						<div>
-							<button class="btn btn-primary btn-sm w-7-rem" type="submit">Create</button>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="d-flex mt-n2">
+			<div class="w-30">
+				<label class="fw-bold" for="product_name">Name</label>
+				<input type="text" placeholder="e.g. 4x4 Poly Bags" class="form-control form-control-sm" name="product[name]" id="product_name">
+			</div>
+			<div class="w-30 ms-1">
+				<label class="fw-bold" for="product_shop_url">Purchase Link</label>
+				<input type="text" placeholder="https://www.amazon.com/coffee..." class="form-control form-control-sm" name="product[shop_url]" id="product_shop_url">
+			</div>
+			<div class="w-10 ms-1">
+				<label class="fw-bold" for="product_quantity">Quantity</label>
+				<input type="number" placeholder="e.g. 10" class="form-control form-control-sm" name="product[quantity]" id="product_quantity">
+			</div>
+			<div class="d-flex ms-1 flex-column flex-grow-1">
+				<label class="fw-bold" for="product_category">Category</label>
+				<select class="form-select form-select-sm" name="product[category_id]" id="product_category">
+					<option selected disabled>Select One</option>
+					<% categories.each do |category| %>
+						<option 
+							value="<%= category.id %>"
+							<%= !current_category_id.nil? && (category.id == current_category_id && "selected") %>>
+								<%= category.name %>
+						</option>
+					<% end %>
+				</select>
+			</div>
+			<div class="d-flex ms-1 align-items-end">
+				<button class="btn btn-primary btn-sm w-7-rem" type="submit">Create</button>
+			</div>
+		</div>
 	</form>
 </div>
 <div class="d-md-none">
@@ -53,7 +54,7 @@
 			<div class="d-flex flex-column flex-grow-1">
 				<label for="form-label">Category</label>
 				<select class="form-select form-select-sm" name="product[category_id]" id="product_category">
-					<option selected disabled></option>
+					<option selected disabled placeholder="Select One">Select One</option>
 					<% categories.each do |category| %>
 						<option 
 							value="<%= category.id %>"
