@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
 	attr_reader :password
 
+	has_many :products, dependent: :destroy
+
 	def self.generate_session_token 
 		session_token = SecureRandom::urlsafe_base64(16)
 		while User.exists?(session_token: session_token) do 

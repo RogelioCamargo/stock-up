@@ -24,11 +24,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_25_232725) do
     t.string "name", null: false
     t.integer "quantity"
     t.integer "status", default: 0, null: false
-    t.string "image_url"
     t.string "shop_url"
     t.integer "category_id"
+    t.integer "user_id"
+    t.integer "reorder_amount"
+    t.integer "unit_of_measure"
+    t.integer "delivery_window"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

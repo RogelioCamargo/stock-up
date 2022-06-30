@@ -10,8 +10,10 @@ class CreateProducts < ActiveRecord::Migration[7.0]
 			t.integer :reorder_amount
 			t.integer :unit_of_measure
 			t.integer :delivery_window 
-			
+
       t.timestamps
     end
+		add_index :products, :category_id
+		add_index :products, :user_id
   end
 end
