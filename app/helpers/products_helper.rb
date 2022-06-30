@@ -80,7 +80,7 @@ module ProductsHelper
 			#{authenticity_token}
 			<button class='btn btn-primary btn-sm text-nowrap w-7-rem' type='submit'>
 				#{ordered_icon}
-				<span class='ms-1'>Ordered</span>
+				<span class='ms-1'>Order</span>
 			</button>
 		</form>".html_safe
 	end

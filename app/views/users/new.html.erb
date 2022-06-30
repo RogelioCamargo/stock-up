@@ -1,17 +1,23 @@
-<section>
-	<h1>Create User</h1>
+<section class="container-sm row mt-5 w-40 m-auto">
+	<h1 class="fs-3">Register</h1>
 	<%= render "shared/errors" %>
 	<form action="<%= users_url%>" method="post">
 		<%= authenticity_token %>
-		<label for="user_username">Username</label>
-		<input type="text" name="user[username]" id="user_username">
-		<br>
-		<label for="user_password">Password</label>
-		<input type="password" name="user[password]" id="user_password">
-		<br>
-		<label for="user_email">Email</label>
-		<input type="text" name="user[email]" id="user_email">
-		<br>
-		<input type="submit" value="Register">
+		<div class="mb-2">
+			<label for="user_username">Username</label>
+			<input type="text" name="user[username]" class="form-control form-control-sm" id="user_username">
+		</div>
+
+		<div class="mb-2">
+			<label for="user_password">Password</label>
+			<input type="password"  name="user[password]" class="form-control form-control-sm" id="user_password">
+		</div>
+
+		<div class="mb-2">
+			<label for="user_email">Email</label>
+			<input type="email"  name="user[email]" class="form-control form-control-sm" id="user_email">
+		</div>
+
+		<button class="w-100 btn btn-sm btn-primary" type="submit">Sign up</button>
 	</form>
 </section>
