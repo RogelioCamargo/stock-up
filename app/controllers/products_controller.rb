@@ -36,7 +36,8 @@ class ProductsController < ApplicationController
 	end
 
 	def dashboard 
-		@products = Product.where(status: 1).includes(:category)
+		@requested_products = Product.where(status: 1).includes(:category)
+		@ordered_products = Product.where(status: 2).includes(:category)
 		render :dashboard
 	end
 

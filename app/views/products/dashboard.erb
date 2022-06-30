@@ -1,10 +1,17 @@
 <section>
 	<div class="d-flex justify-content-between mt-4 mb-2">
-		<%= page_title "Order More" %>
+		<%= page_title "Need to Order" %>
 		<form action="<%= request_products_products_url %>" method="post">
 			<%= authenticity_token %>
 			<button class='btn btn-primary btn-sm' type="submit">Request Products</button>
 		</form>
 	</div>
-	<%= render 'shared/products', products: @products, location: 0 %>
+	<%= render 'shared/products', products: @requested_products, location: 0 %>
+</section>
+
+<section>
+	<div class="d-flex justify-content-between mt-4 mb-2">
+		<%= page_title "Items in Route" %>
+	</div>
+	<%= render 'shared/products', products: @ordered_products, location: 0 %>
 </section>
