@@ -1,5 +1,5 @@
 <section>
 	<%= page_title "Products" %>
-	<%= render 'shared/products', products: @products, from_category: false %>
+	<%= render 'shared/products', products: @products, location: 2 %>
 </section>
-<%= render 'form', categories: @categories, current_category_id: nil %>
+<%= render 'form', categories: @categories, current_category_id: nil, location: 2 %>

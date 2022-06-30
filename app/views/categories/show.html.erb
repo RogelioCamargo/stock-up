@@ -10,6 +10,6 @@
 			</li>
 		<% end %>
 	</ul>
-	<%= render 'shared/products', products: products, from_category: true %>
-	<%= render 'products/form', categories: @categories, current_category_id: @category.id %>
+	<%= render 'shared/products', products: products, location: 1 %>
+	<%= render 'products/form', categories: @categories, current_category_id: @category.id, location: 1 %>
 </section>

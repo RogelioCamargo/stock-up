@@ -11,19 +11,19 @@ module ProductsHelper
 		</thead>".html_safe
 	end
 
-	def products_table_row(product, from_category = false)
+	def products_table_row(product, location)
 		"<tr>
 			<td>#{product.name}</td>
 			<td>
-				#{product_quantity_form(product, from_category)}
+				#{product_quantity_form(product, location)}
 			</td>
 			<td class='text-nowrap'>#{product.category.name}</td>
 			<td class='d-flex'>
 				#{product.status == 0 ?
-					request_button(product, from_category) :
+					request_button(product, location) :
 					(product.status == 1 ? 
-					ordered_button(product, from_category) :
-					received_button(product, from_category))}
+					ordered_button(product, location) :
+					received_button(product, location))}
 			</td>
 			<td class='text-nowrap'>
 				#{product.updated_at.strftime("%m/%d/%Y")}
@@ -32,8 +32,8 @@ module ProductsHelper
 		</tr>".html_safe
 	end
 
-	def product_quantity_form(product, from_category = false)
-		"<form action='#{product_url(product)}#{from_category && "?from_category=true"}' method='post'>
+	def product_quantity_form(product, location)
+		"<form action='#{product_url(product)}#{"?location=#{location}"}' method='post'>
 			<input type='hidden' name='_method' value='patch'>
 			#{authenticity_token}
 			<div class='d-flex'>
@@ -47,8 +47,8 @@ module ProductsHelper
 		</form>".html_safe
 	end	
 
-	def request_button_mobile(product, from_category)
-		"<form action='#{order_product_url(product)}#{from_category ? "?from_category=true" : ""}' method='post'>
+	def request_button_mobile(product, location)
+		"<form action='#{order_product_url(product)}#{"?location=#{location}"}' method='post'>
 			#{authenticity_token}
 			<button class='btn btn-primary ms-1 btn-sm' type='submit'>
 				#{request_icon}
@@ -56,8 +56,8 @@ module ProductsHelper
 		</form>".html_safe
 	end
 
-	def request_button(product, from_category)
-		"<form action='#{order_product_url(product)}#{from_category ? "?from_category=true" : ""}' method='post'>
+	def request_button(product, location)
+		"<form action='#{order_product_url(product)}#{"?location=#{location}"}' method='post'>
 			#{authenticity_token}
 			<button class='btn btn-primary btn-sm text-nowrap w-7-rem' type='submit'>
 				#{request_icon}
@@ -66,8 +66,8 @@ module ProductsHelper
 		</form>".html_safe
 	end
 
-	def ordered_button_mobile(product, from_category) 
-		"<form action='#{ordered_product_url(product)}#{from_category ? "?from_category=true" : ""}' method='post'>
+	def ordered_button_mobile(product, location) 
+		"<form action='#{ordered_product_url(product)}#{"?location=#{location}"}' method='post'>
 			#{authenticity_token}
 			<button class='btn btn-primary ms-1 btn-sm' type='submit'>
 				#{ordered_icon}
@@ -75,8 +75,8 @@ module ProductsHelper
 		</form>".html_safe
 	end
 
-	def ordered_button(product, from_category) 
-		"<form action='#{ordered_product_url(product)}#{from_category ? "?from_category=true" : ""}' method='post'>
+	def ordered_button(product, location) 
+		"<form action='#{ordered_product_url(product)}#{"?location=#{location}"}' method='post'>
 			#{authenticity_token}
 			<button class='btn btn-primary btn-sm text-nowrap w-7-rem' type='submit'>
 				#{ordered_icon}
@@ -85,8 +85,8 @@ module ProductsHelper
 		</form>".html_safe
 	end
 
-	def received_button_mobile(product, from_category) 
-		"<form action='#{received_product_url(product)}#{from_category ? "?from_category=true" : ""}' method='post'>
+	def received_button_mobile(product, location) 
+		"<form action='#{received_product_url(product)}#{"?location=#{location}"}' method='post'>
 			#{authenticity_token}
 			<button class='btn btn-primary ms-1 btn-sm' type='submit'>
 				#{received_icon}
@@ -94,8 +94,8 @@ module ProductsHelper
 		</form>".html_safe
 	end
 
-	def received_button(product, from_category) 
-		"<form action='#{received_product_url(product)}#{from_category ? "?from_category=true" : ""}' method='post'>
+	def received_button(product, location) 
+		"<form action='#{received_product_url(product)}#{"?location=#{location}"}' method='post'>
 			#{authenticity_token}
 			<button class='btn btn-primary btn-sm text-nowrap w-7-rem' type='submit'>
 				#{received_icon}

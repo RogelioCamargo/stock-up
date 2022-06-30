@@ -7,7 +7,7 @@
 			<%= products_table_head %>
 			<tbody>
 				<% products.order(:created_at).each do |product| %>
-					<%= products_table_row(product, from_category) %>
+					<%= products_table_row(product, location) %>
 				<% end %>
 			</tbody>
 		</table>
@@ -21,16 +21,16 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% products.each do |product| %>
+				<% products.order(:created_at).each do |product| %>
 					<tr scope='row'>
 						<td><%= product.name%></td>
 						<td class="d-flex">
-							<%= product_quantity_form product%>
+							<%= product_quantity_form(product, location)%>
 							<%= product.status == 0 ?
-								request_button_mobile(product, from_category) :
+								request_button_mobile(product, location) :
 								(product.status == 1 ? 
-								ordered_button(product, from_category) :
-								received_button_mobile(product, from_category))%>
+								ordered_button_mobile(product, location) :
+								received_button_mobile(product, location))%>
 						</td>
 					</tr>
 				<% end %>

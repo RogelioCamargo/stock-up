@@ -13,18 +13,24 @@ class ProductsController < ApplicationController
 	def create 
 		@product = Product.new(product_params)
 		if @product.save 
-			if params[:from_category]
+			case params[:location].to_i
+			when 1
 				redirect_to category_url(@product.category_id)
-			else
-				redirect_to products_url
+			when 2 
+				redirect_to products_url 
+			else 
+				fail 
 			end
 		else
-			if params[:from_category]
+			case params[:location].to_i
+			when 1
 				flash[:errors] = @product.errors.full_messages
 				redirect_to category_url(@product.category_id)
-			else
+			when 2
 				flash.now[:errors] = @product.errors.full_messages
 				render :index
+			else
+				fail
 			end
 		end
 	end
@@ -36,20 +42,56 @@ class ProductsController < ApplicationController
 
 	def order 
 		product = Product.find(params[:id])
-		product.update(status: 1)
-		redirect_to category_url(product.category_id)
+		if product.update(status: 1)
+			case params[:location].to_i
+			when 0 
+				redirect_to dashboard_products_url
+			when 1
+				redirect_to category_url(product.category_id)
+			when 2 
+				redirect_to products_url 
+			else 
+				fail 
+			end
+		else 
+			fail 
+		end
 	end
 
 	def ordered 
 		product = Product.find(params[:id])
-		product.update(status: 2)
-		redirect_to category_url(product.category_id)
+		if product.update(status: 2)
+			case params[:location].to_i
+			when 0 
+				redirect_to dashboard_products_url
+			when 1
+				redirect_to category_url(product.category_id)
+			when 2 
+				redirect_to products_url 
+			else 
+				fail 
+			end
+		else
+			fail 
+		end
 	end
 
 	def received 
 		product = Product.find(params[:id])
-		product.update(status: 0)
-		redirect_to category_url(product.category_id)
+		if product.update(status: 0)
+			case params[:location].to_i
+			when 0 
+				redirect_to dashboard_products_url
+			when 1
+				redirect_to category_url(product.category_id)
+			when 2 
+				redirect_to products_url 
+			else 
+				fail 
+			end
+		else  
+			fail 
+		end
 	end
 
 	def request_products 
@@ -72,18 +114,26 @@ class ProductsController < ApplicationController
 	def update 
 		@product = Product.find(params[:id])
 		if @product.update(product_params)
-			if params[:from_category]
+			case params[:location].to_i
+			when 0 
+				redirect_to dashboard_products_url
+			when 1
 				redirect_to category_url(@product.category_id)
-			else
-				redirect_to products_url
+			when 2 
+				redirect_to products_url 
+			else 
+				fail 
 			end
 		else
-			if params[:from_category]
+			case params[:location].to_i
+			when 1
 				flash[:errors] = @product.errors.full_messages
 				redirect_to category_url(@product.category_id)
-			else
+			when 2
 				flash.now[:errors] = @product.errors.full_messages
 				render :index
+			else
+				fail
 			end
 		end
 	end

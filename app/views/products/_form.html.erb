@@ -1,4 +1,4 @@
-<% query = current_category_id.nil? ? "" : "?from_category=true" %>
+<% query = "?location=#{location}" %>
 
 <div class="d-none d-md-block">
 	<%= render "shared/errors" %>
@@ -37,7 +37,7 @@
 </div>
 <div class="d-md-none">
 	<%= render "shared/errors" %>
-	<form class="mt-n2" action="<%= products_url %>" method="post">
+	<form class="mt-n2" action="<%= products_url + query %>" method="post">
 		<%= authenticity_token %>
 		<div class="d-flex mb-1">
 			<div class="d-flex flex-column flex-grow-1">
