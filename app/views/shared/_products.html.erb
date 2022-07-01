@@ -2,40 +2,40 @@
 	<% if products.empty? %>
 		<div class="my-3">No products at the moment.</div>
 	<% else %>
-	<div class="table-responsive d-none d-md-block">
-		<table class="table table-hover align-middle">
-			<%= products_table_head %>
-			<tbody>
-				<% products.order(:created_at).each do |product| %>
-					<%= products_table_row(product, location) %>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
-	<div class="d-md-none">
-		<table class="table">
-			<thead>
-				<tr>
-					<th class="w-60" scope='col'>Name</th>
-					<th scope='col'>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% products.order(:created_at).each do |product| %>
-					<tr scope='row'>
-						<td><%= product.name%></td>
-						<td class="d-flex">
-							<%= product_quantity_form(product, location)%>
-							<%= product.status == 0 ?
-								request_button_mobile(product, location) :
-								(product.status == 1 ? 
-								ordered_button_mobile(product, location) :
-								received_button_mobile(product, location))%>
-						</td>
+		<div class="table-responsive d-none d-md-block">
+			<table class="table table-hover align-middle">
+				<%= products_table_head %>
+				<tbody>
+					<% products.order(:created_at).each do |product| %>
+						<%= products_table_row(product, location) %>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+		<div class="d-md-none">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="w-60" scope='col'>Name</th>
+						<th scope='col'>Quantity</th>
 					</tr>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
+				</thead>
+				<tbody>
+					<% products.order(:created_at).each do |product| %>
+						<tr scope='row'>
+							<td><%= product.name%></td>
+							<td class="d-flex">
+								<%= product_quantity_form(product, location)%>
+								<%= product.status == 0 ?
+									request_button_mobile(product, location) :
+									(product.status == 1 ? 
+									ordered_button_mobile(product, location) :
+									received_button_mobile(product, location))%>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
 	<% end %>
 </div>

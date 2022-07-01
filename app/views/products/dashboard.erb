@@ -1,6 +1,20 @@
 <section>
 	<div class="d-flex justify-content-between mt-4 mb-2">
 		<%= page_title "Need to Order" %>
+		<div class="d-none d-lg-block">
+			<div class="d-flex">
+				<form action="<%= request_products_products_url %>" method="post">
+					<%= authenticity_token %>
+					<button class='btn btn-primary btn-sm' type="submit">Request Products</button>
+				</form>
+				<form action="<%= order_all_requested_products_url%>" method="post">
+					<%= authenticity_token %>
+					<button class='btn btn-primary btn-sm ms-1' type="submit">Mark All As Ordered</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="mt-n2 d-lg-none mb-2">
 		<div class="d-flex">
 			<form action="<%= request_products_products_url %>" method="post">
 				<%= authenticity_token %>
@@ -18,9 +32,17 @@
 <section>
 	<div class="d-flex justify-content-between mt-4 mb-2">
 		<%= page_title "Items in Route" %>
+		<div class="d-none d-lg-block">
+			<form action="<%= receive_all_ordered_products_url %>" method="post">
+				<%= authenticity_token %>
+				<button class='btn btn-primary btn-sm' type="submit">Mark All As Received</button>
+			</form>
+		</div>
+	</div>
+	<div class="mt-n2 d-lg-none mb-2">
 		<form action="<%= receive_all_ordered_products_url %>" method="post">
 			<%= authenticity_token %>
-			<button class='btn btn-primary btn-sm ms-1' type="submit">Mark All As Received</button>
+			<button class='btn btn-primary btn-sm' type="submit">Mark All As Received</button>
 		</form>
 	</div>
 	<%= render 'shared/products', products: @ordered_products, location: 0 %>
