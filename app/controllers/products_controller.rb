@@ -2,11 +2,13 @@ require 'httparty'
 require 'dotenv'
 
 class ProductsController < ApplicationController
+	before_action :require_user!
+
 	include HTTParty
 
 	def index 
 		@products = Product.all.includes(:category)
-		@categories = Category.all 
+		@categories = Category.all
 		render :index
 	end
 
