@@ -141,6 +141,16 @@ class ProductsController < ApplicationController
 		end
 	end
 
+	def order_all_requested
+		Product.where(status: 1).update_all(status: 2)
+		redirect_to dashboard_products_url
+	end
+
+	def receive_all_ordered
+		Product.where(status: 2).update_all(status: 0)
+		redirect_to dashboard_products_url
+	end
+
 	def destroy
 		product = Product.find(params[:id])
 		product.destroy

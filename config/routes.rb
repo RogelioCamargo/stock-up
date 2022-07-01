@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 		collection do 
 			get :dashboard
 			post :request_products
+			post :order_all_requested
+			post :receive_all_ordered
 		end
 		member do 
 			post :order
