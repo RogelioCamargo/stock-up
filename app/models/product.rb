@@ -3,7 +3,6 @@ class Product < ApplicationRecord
 	after_initialize :ensure_status 
 
 	belongs_to :category
-	belongs_to :user, optional: true
 
 	private 
 
