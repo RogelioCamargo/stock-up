@@ -29,8 +29,8 @@ class ProductsController < ApplicationController
 				flash[:errors] = @product.errors.full_messages
 				redirect_to category_url(@product.category_id)
 			when 2
-				flash.now[:errors] = @product.errors.full_messages
-				render :index
+				flash[:errors] = @product.errors.full_messages
+				redirect_to products_url
 			else
 				fail
 			end
@@ -160,6 +160,6 @@ class ProductsController < ApplicationController
 	private 
 
 	def product_params 
-		params.require(:product).permit(:name, :quantity, :shop_url, :category_id, :reorder_amount, :unit_of_measure, :delivery_window)
+		params.require(:product).permit(:name, :quantity, :category_id,:unit_of_measure, :reorder_amount, :shop_url, :delivery_window)
 	end
 end

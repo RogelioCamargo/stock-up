@@ -28,7 +28,7 @@ module ProductsHelper
 						received_button(product, location))}
 				</div>
 				<div class='ms-1'>
-					<a class='btn btn-outline-primary btn-sm #{product.shop_url.empty? && 'disabled'}' href='#{product.shop_url}'>
+					<a class='btn btn-outline-primary btn-sm #{product.shop_url.empty? && 'disabled'}' target='_blank' href='#{product.shop_url}'>
 						<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-link' viewBox='0 0 16 16'>
 							<path d='M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z'/>
 							<path d='M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z'/>
@@ -36,7 +36,7 @@ module ProductsHelper
 					</a>
 				</div>
 			</td>
-			<td class='w-10-rem'>#{product.reorder_amount}</td>
+			<td class='w-10-rem'>#{product.reorder_amount} #{product.unit_of_measure}</td>
 			<td class='text-nowrap'>
 				#{product.updated_at.strftime("%m/%d/%Y")}
 				#{product.updated_at.in_time_zone("Pacific Time (US & Canada)").strftime("%I:%M%p")}
