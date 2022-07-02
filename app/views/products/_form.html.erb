@@ -29,20 +29,16 @@
 			</div>
 			<div class="d-flex ms-1 flex-column flex-grow-1">
 				<label class="fw-bold" for="product_unit_of_measure">Unit of Measure</label>
-				<select class="form-select form-select-sm" name="product[unit_of_measure]" id="product_unit_of_measure">
-					<option selected disabled></option>
-					<% ["Rolls", "Boxes", "Bags", "Units", "Other"].each do |type| %>
-						<option 
-							value="<%= type %>">
-								<%= type %>
-						</option>
-					<% end %>
-				</select>
+				<input type="text" placeholder="e.g. Boxes" class="form-control form-control-sm" name="product[unit_of_measure]" id="product_unit_of_measure">
 			</div>
 		</div>
 		<%# Part 2 %>
 		<div class="d-flex">
 			<div class="w-15 ms-1">
+				<label class="fw-bold text-nowrap" for="product_reorder_limit">Warning Limit</label>
+				<input type="number" placeholder="e.g. 10" class="form-control form-control-sm" name="product[reorder_limit]" id="product_reorder_limit">
+			</div>
+			<div class="w-10 ms-1">
 				<label class="fw-bold" for="product_reorder_amount">Reorder Amount</label>
 				<input type="number" placeholder="e.g. 10" class="form-control form-control-sm" name="product[reorder_amount]" id="product_reorder_amount">
 			</div>
@@ -50,7 +46,7 @@
 				<label class="fw-bold" for="product_shop_url">Purchase Link</label>
 				<input type="text" placeholder="https://www.amazon.com/coffee..." class="form-control form-control-sm" name="product[shop_url]" id="product_shop_url">
 			</div>
-			<div class="w-30 ms-1">
+			<div class="ms-1">
 				<label class="fw-bold" for="product_delivery_window">Delivery Window</label>
 				<input type="text" placeholder="e.g. 2 Weeks" class="form-control form-control-sm" name="product[delivery_window]" id="product_delivery_window">
 			</div>

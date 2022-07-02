@@ -30,6 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_25_232725) do
     t.integer "reorder_amount"
     t.string "unit_of_measure"
     t.string "delivery_window"
+    t.integer "reorder_limit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_products_on_category_id"

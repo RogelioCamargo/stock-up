@@ -9,6 +9,7 @@ class CreateProducts < ActiveRecord::Migration[7.0]
 			t.integer :reorder_amount
 			t.string :unit_of_measure
 			t.string :delivery_window
+			t.integer :reorder_limit
 
       t.timestamps
     end
