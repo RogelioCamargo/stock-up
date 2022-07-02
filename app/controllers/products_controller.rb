@@ -98,9 +98,52 @@ class ProductsController < ApplicationController
 	end
 
 	def request_products 
-		product_names = Product.where(status: 1).map(&:name)
+		products = Product.where(status: 1)
+		sections = []
+		products.each do |product|
+			fields = []
+			if product.shop_url.empty? 
+				fields << { type: "mrkdwn", text: "*#{product.name}*" }
+			else 
+				fields << { type: "mrkdwn", text: "<#{product.shop_url}|#{product.name}>"}
+			end
+
+			second_column_text = "" 
+			second_column_text += "*Quantity*: #{product.quantity}\n" unless product.quantity.nil? 
+			second_column_text += "*Reorder*: #{product.reorder_amount}" unless product.reorder_amount.nil? 
+
+			unless second_column_text.empty? 
+				fields << { type: "mrkdwn", text: second_column_text }
+			end
+
+			sections << { type: "section", fields: fields }
+			sections << { type: "divider" }
+		end
+
 		HTTParty.post(ENV["SLACK_WEBHOOK_URL"], 
-			body: { text: product_names.join("\n") }.to_json, 
+			body: { 
+				"blocks": [
+					{
+						"type": "header",
+						"text": {
+							type: "plain_text",
+							text: "New Request\n",
+							emoji: true 
+						}
+					}, 
+					{
+						type: "divider"
+					},
+					*sections,
+					{
+						type: "section",
+						text: {
+							type: "mrkdwn",
+							text: "<https://example.com|Open App>"
+						}
+					}
+				]
+			 }.to_json, 
 			header: { 'Content-Type': 'application/json' })
 	end
 
