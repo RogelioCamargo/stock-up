@@ -5,11 +5,11 @@
 			<div class="d-flex">
 				<form action="<%= request_products_products_url %>" method="post">
 					<%= authenticity_token %>
-					<button class='btn btn-primary btn-sm' type="submit">Request Products</button>
+					<button class='w-9-rem btn btn-secondary btn-sm' type="submit">Notify Manager</button>
 				</form>
 				<form action="<%= order_all_requested_products_url%>" method="post">
 					<%= authenticity_token %>
-					<button class='btn btn-primary btn-sm ms-1' type="submit">Mark All As Ordered</button>
+					<button class='w-9-rem btn btn-primary btn-sm ms-1' type="submit">Ordered All</button>
 				</form>
 			</div>
 		</div>
@@ -18,11 +18,11 @@
 		<div class="d-flex">
 			<form action="<%= request_products_products_url %>" method="post">
 				<%= authenticity_token %>
-				<button class='btn btn-primary btn-sm' type="submit">Request Products</button>
+				<button class='btn btn-primary btn-sm' type="submit">Notify Manager</button>
 			</form>
 			<form action="<%= order_all_requested_products_url%>" method="post">
 				<%= authenticity_token %>
-				<button class='btn btn-primary btn-sm ms-1' type="submit">Mark All As Ordered</button>
+				<button class='btn btn-primary btn-sm ms-1' type="submit">Ordered All</button>
 			</form>
 		</div>
 	</div>
@@ -35,14 +35,14 @@
 		<div class="d-none d-lg-block">
 			<form action="<%= receive_all_ordered_products_url %>" method="post">
 				<%= authenticity_token %>
-				<button class='btn btn-primary btn-sm' type="submit">Mark All As Received</button>
+				<button class='w-9-rem btn btn-primary btn-sm' type="submit">Receive All</button>
 			</form>
 		</div>
 	</div>
 	<div class="mt-n2 d-lg-none mb-2">
 		<form action="<%= receive_all_ordered_products_url %>" method="post">
 			<%= authenticity_token %>
-			<button class='btn btn-primary btn-sm' type="submit">Mark All As Received</button>
+			<button class='btn btn-primary btn-sm' type="submit">Receive All</button>
 		</form>
 	</div>
 	<%= render 'shared/products', products: @ordered_products, location: 0 %>
