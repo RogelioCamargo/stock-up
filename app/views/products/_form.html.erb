@@ -1,14 +1,25 @@
 <% query = "?location=#{location}" %>
+<% exists = product.persisted? %>
+<% action_url = exists ? product_url(product) : products_url %>
+<% method_type = exists ? :patch : :post %>
+
 <%# Desktop %>
 <div class="d-none d-md-block">
 	<%= render "shared/errors" %>
-	<form action="<%= products_url + query %>" method="post">
+	<form class="<%= !exists ? "mt-n2" : "mt-3" %>" action="<%= action_url + query %>" method="post">
+		<input type="hidden" name="_method" value="<%= method_type %>">
 		<%= authenticity_token %>
 		<%# Part 1 %>
-		<div class="d-flex mt-n2 mb-1">
+		<div class="d-flex mb-1">
 			<div class="w-30">
 				<label class="fw-bold" for="product_name">Name<span class="fw-normal ms-1">(required)</span></label>
-				<input type="text" placeholder="e.g. 4x4 Poly Bags" class="form-control form-control-sm" name="product[name]" id="product_name">
+				<input 
+					type="text" 
+					placeholder="e.g. 4x4 Poly Bags" 
+					class="form-control form-control-sm" 
+					name="product[name]" 
+					id="product_name"
+					value="<%= product.name %>">
 			</div>
 			<div class="d-flex ms-1 flex-column flex-grow-1">
 				<label class="fw-bold" for="product_category">Category<span class="fw-normal ms-1">(required)</span></label>
@@ -25,33 +36,69 @@
 			</div>
 			<div class="w-10 ms-1">
 				<label class="fw-bold" for="product_quantity">Quantity</label>
-				<input type="number" placeholder="e.g. 10" class="form-control form-control-sm" name="product[quantity]" id="product_quantity">
+				<input 
+					type="number" 
+					placeholder="e.g. 10" 
+					class="form-control form-control-sm" 
+					name="product[quantity]" 
+					id="product_quantity"
+					value="<%= product.quantity %>">
 			</div>
 			<div class="d-flex ms-1 flex-column flex-grow-1">
 				<label class="fw-bold" for="product_unit_of_measure">Unit of Measure</label>
-				<input type="text" placeholder="e.g. Boxes" class="form-control form-control-sm" name="product[unit_of_measure]" id="product_unit_of_measure">
+				<input 
+					type="text" 
+					placeholder="e.g. Boxes" 
+					class="form-control form-control-sm" 
+					name="product[unit_of_measure]" 
+					id="product_unit_of_measure"
+					value="<%= product.unit_of_measure %>">
 			</div>
 		</div>
 		<%# Part 2 %>
 		<div class="d-flex">
-			<div class="w-15 ms-1">
+			<div class="w-15">
 				<label class="fw-bold text-nowrap" for="product_reorder_limit">Warning Limit</label>
-				<input type="number" placeholder="e.g. 100" class="form-control form-control-sm" name="product[reorder_limit]" id="product_reorder_limit">
+				<input 
+					type="number" 
+					placeholder="e.g. 100" 
+					class="form-control form-control-sm" 
+					name="product[reorder_limit]" 
+					id="product_reorder_limit"
+					value="<%= product.reorder_limit %>">
 			</div>
 			<div class="w-15 ms-1">
 				<label class="fw-bold text-nowrap" for="product_reorder_amount">Reorder Amount</label>
-				<input type="number" placeholder="e.g. 1000" class="form-control form-control-sm" name="product[reorder_amount]" id="product_reorder_amount">
+				<input 
+					type="number" 
+					placeholder="e.g. 1000" 
+					class="form-control form-control-sm" 
+					name="product[reorder_amount]" 
+					id="product_reorder_amount"
+					value="<%= product.reorder_amount %>">
 			</div>
 			<div class="w-30 d-flex ms-1 flex-column flex-grow-1">
 				<label class="fw-bold" for="product_shop_url">Purchase Link</label>
-				<input type="text" placeholder="e.g. https://www.amazon.com/coffee..." class="form-control form-control-sm" name="product[shop_url]" id="product_shop_url">
+				<input 
+					type="text" 
+					placeholder="e.g. https://www.amazon.com/coffee..." 
+					class="form-control form-control-sm" 
+					name="product[shop_url]" 
+					id="product_shop_url"
+					value="<%= product.shop_url %>">
 			</div>
 			<div class="ms-1">
 				<label class="fw-bold" for="product_delivery_window">Delivery Window</label>
-				<input type="text" placeholder="e.g. 2 Weeks" class="form-control form-control-sm" name="product[delivery_window]" id="product_delivery_window">
+				<input 
+					type="text" 
+					placeholder="e.g. 2 Weeks" 
+					class="form-control form-control-sm" 
+					name="product[delivery_window]" 
+					id="product_delivery_window"
+					value="<%= product.delivery_window %>">
 			</div>
 			<div class="d-flex ms-1 align-items-end">
-				<button class="btn btn-primary btn-sm w-7-rem" type="submit">Create</button>
+				<button class="btn btn-primary btn-sm w-7-rem" type="submit"><%= exists ? "Update" : "Create" %></button>
 			</div>
 		</div>
 	</form>
@@ -59,16 +106,29 @@
 <%# Mobile %>
 <div class="d-md-none">
 	<%= render "shared/errors" %>
-	<form class="mt-n2" action="<%= products_url + query %>" method="post">
+	<form class="<%= !exists ? "mt-n2" : "mt-3" %>" action="<%= action_url + query %>" method="post">
+		<input type="hidden" name="_method" value="<%= method_type %>">
 		<%= authenticity_token %>
 		<div class="d-flex mb-1">
 			<div class="d-flex flex-column flex-grow-1">
 				<label class="fw-bold" for="form-label">Name<span class="fw-normal ms-1">(required)</span></label>
-				<input type="text" placeholder="e.g. 4x4 Poly Bags" class="form-control form-control-sm" name="product[name]" id="product_name">
+				<input 
+					type="text" 
+					placeholder="e.g. 4x4 Poly Bags" 
+					class="form-control form-control-sm" 
+					name="product[name]" 
+					id="product_name"
+					value="<%= product.name %>">
 			</div>
 			<div class="ms-1 w-25">
 				<label class="fw-bold" for="form-label">Quantity</label>
-				<input type="number" placeholder="e.g. 10" class="form-control form-control-sm" name="product[quantity]" id="product_quantity">
+				<input 
+					type="number" 
+					placeholder="e.g. 10" 
+					class="form-control form-control-sm" 
+					name="product[quantity]" 
+					id="product_quantity"
+					value="<%= product.quantity %>">
 			</div>
 		</div>
 		<div class="d-flex align-items-end">
@@ -85,7 +145,7 @@
 					<% end %>
 				</select>
 			</div>
-			<button class="btn btn-primary btn-sm ms-1" type="submit">Create</button>
+			<button class="btn btn-primary btn-sm ms-1" type="submit"><%= exists ? "Update" : "Create" %></button>
 		</div>
 	</form>
 </div>

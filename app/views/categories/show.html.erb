@@ -16,5 +16,5 @@
 		<% end %>
 	</ul>
 	<%= render 'shared/products', products: products, location: 1 %>
-	<%= render 'products/form', categories: @categories, current_category_id: @category.id, location: 1 %>
+	<%= render 'products/form', product: @product, categories: @categories, current_category_id: @category.id, location: 1 %>
 </section>
