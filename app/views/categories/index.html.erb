@@ -1,7 +1,8 @@
+<%# Desktop %>
 <div class="d-flex justify-content-between mt-4 mb-2">
 	<%= page_title "Manage Categories" %>
 </div>
-<div class="w-50 d-none d-lg-block">
+<div class="category-index">
 	<table class="table">
 		<thead>
 			<tr>
@@ -21,23 +22,5 @@
 		</tbody>
 	</table>
 </div>
-<table class="table d-lg-none">
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @categories.each do |category| %>
-			<tr>
-				<td><%= category.name %></td>
-				<td>
-					<%= delete_icon category_url(category) %>
-				</td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
 <%= render "form" %>
 

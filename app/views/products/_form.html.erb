@@ -1,5 +1,5 @@
 <% query = "?location=#{location}" %>
-
+<%# Desktop %>
 <div class="d-none d-md-block">
 	<%= render "shared/errors" %>
 	<form action="<%= products_url + query %>" method="post">
@@ -56,6 +56,7 @@
 		</div>
 	</form>
 </div>
+<%# Mobile %>
 <div class="d-md-none">
 	<%= render "shared/errors" %>
 	<form class="mt-n2" action="<%= products_url + query %>" method="post">
