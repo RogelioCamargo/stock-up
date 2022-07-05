@@ -5,7 +5,16 @@
 		<%# Desktop %>
 		<div class="table-responsive d-none d-md-block">
 			<table class="table table-hover align-middle">
-				<%= products_table_head %>
+				<thead>
+					<tr>
+						<th class='w-25-rem'>Name</th>
+						<th class='w-10-rem'>Quantity</th>
+						<th >Category</th>
+						<th>Actions</th>
+						<th class='w-10-rem'>Reorder Amount</th>
+						<th>Modified</th>
+					</tr>
+				</thead>
 				<tbody>
 					<% products.order(:created_at).each do |product| %>
 						<%= products_table_row(product, location) %>
@@ -29,10 +38,10 @@
 							<td class="d-flex">
 								<%= product_quantity_form(product, location)%>
 								<%= product.status == 0 ?
-									request_button_mobile(product, location) :
+									request_button(product, location) :
 									(product.status == 1 ? 
-									ordered_button_mobile(product, location) :
-									received_button_mobile(product, location))%>
+									ordered_button(product, location) :
+									received_button(product, location))%>
 							</td>
 						</tr>
 					<% end %>

@@ -66,6 +66,14 @@
 	width: 85%
 }
 
+@media (min-width: 768px) {
+	.status-btn {
+		white-space: nowrap;
+		width: 7rem;
+		margin-left: 0;
+	}
+}
+
 @media (min-width: 992px) {
 	.login, .register {
 		width: 40%;

@@ -1,17 +1,4 @@
 module ProductsHelper
-	def products_table_head
-		"<thead>
-			<tr>
-				<th class='w-25-rem'>Name</th>
-				<th class='w-10-rem'>Quantity</th>
-				<th >Category</th>
-				<th>Actions</th>
-				<th class='w-10-rem'>Reorder Amount</th>
-				<th>Modified</th>
-			</tr>
-		</thead>".html_safe
-	end
-
 	def products_table_row(product, location)
 		"<tr>
 			<td class='w-25-rem'>#{product.name}</td>
@@ -59,30 +46,12 @@ module ProductsHelper
 		</form>".html_safe
 	end	
 
-	def request_button_mobile(product, location)
-		"<form action='#{order_product_url(product)}#{"?location=#{location}"}' method='post'>
-			#{authenticity_token}
-			<button class='btn btn-primary ms-1 btn-sm' type='submit'>
-				#{request_icon}
-			</button>
-		</form>".html_safe
-	end
-
 	def request_button(product, location)
 		"<form action='#{order_product_url(product)}#{"?location=#{location}"}' method='post'>
 			#{authenticity_token}
-			<button class='btn btn-primary btn-sm text-nowrap w-7-rem' type='submit'>
+			<button class='btn btn-primary btn-sm ms-1 status-btn' type='submit'>
 				#{request_icon}
-				<span class='ms-1'>Request</span>
-			</button>
-		</form>".html_safe
-	end
-
-	def ordered_button_mobile(product, location) 
-		"<form action='#{ordered_product_url(product)}#{"?location=#{location}"}' method='post'>
-			#{authenticity_token}
-			<button class='btn btn-primary ms-1 btn-sm' type='submit'>
-				#{ordered_icon}
+				<span class='ms-1 d-none d-md-inline'>Request</span>
 			</button>
 		</form>".html_safe
 	end
@@ -90,18 +59,9 @@ module ProductsHelper
 	def ordered_button(product, location) 
 		"<form action='#{ordered_product_url(product)}#{"?location=#{location}"}' method='post'>
 			#{authenticity_token}
-			<button class='btn btn-primary btn-sm text-nowrap w-7-rem' type='submit'>
+			<button class='btn btn-primary btn-sm ms-1 status-btn' type='submit'>
 				#{ordered_icon}
-				<span class='ms-1'>Order</span>
-			</button>
-		</form>".html_safe
-	end
-
-	def received_button_mobile(product, location) 
-		"<form action='#{received_product_url(product)}#{"?location=#{location}"}' method='post'>
-			#{authenticity_token}
-			<button class='btn btn-primary ms-1 btn-sm' type='submit'>
-				#{received_icon}
+				<span class='ms-1 d-none d-md-inline'>Order</span>
 			</button>
 		</form>".html_safe
 	end
@@ -109,9 +69,9 @@ module ProductsHelper
 	def received_button(product, location) 
 		"<form action='#{received_product_url(product)}#{"?location=#{location}"}' method='post'>
 			#{authenticity_token}
-			<button class='btn btn-primary btn-sm text-nowrap w-7-rem' type='submit'>
+			<button class='btn btn-primary btn-sm ms-1 status-btn' type='submit'>
 				#{received_icon}
-				<span class='ms-1'>Received</span>
+				<span class='ms-1 d-none d-md-inline'>Received</span>
 			</button>
 		</form>".html_safe
 	end
