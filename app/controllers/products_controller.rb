@@ -139,7 +139,7 @@ class ProductsController < ApplicationController
 						type: "section",
 						text: {
 							type: "mrkdwn",
-							text: "<https://example.com|Open App>"
+							text: "<https://stockup-switch.herokuapp.com|Open App>"
 						}
 					}
 				]
