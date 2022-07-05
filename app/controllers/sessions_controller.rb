@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 			render :new, status: :unprocessable_entity
 		else 
 			login_user!(user)
-			redirect_to user_url(user)
+			redirect_to products_url
 		end
 	end
 
