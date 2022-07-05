@@ -74,4 +74,13 @@
 	.category-index, .category-form {
 		width: 50%;
 	}
+
+	.dashboard-display {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.dashboard-button {
+		width: 9rem;
+	}
 }

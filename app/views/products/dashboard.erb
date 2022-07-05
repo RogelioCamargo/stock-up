@@ -1,30 +1,18 @@
 <%# Need to Order %>
 <section>
-	<div class="d-flex justify-content-between mt-4 mb-2">
+	<div class="dashboard-display mt-4 mb-2">
 		<%= page_title "Need to Order" %>
-		<div class="d-none d-lg-block">
+		<div>
 			<div class="d-flex">
 				<form action="<%= request_products_products_url %>" method="post">
 					<%= authenticity_token %>
-					<button class='w-9-rem btn btn-secondary btn-sm' type="submit">Notify Manager</button>
+					<button class='dashboard-button btn btn-secondary btn-sm' type="submit">Notify Manager</button>
 				</form>
 				<form action="<%= order_all_requested_products_url%>" method="post">
 					<%= authenticity_token %>
-					<button class='w-9-rem btn btn-primary btn-sm ms-1' type="submit">Ordered All</button>
+					<button class='dashboard-button btn btn-primary btn-sm ms-1' type="submit">Ordered All</button>
 				</form>
 			</div>
-		</div>
-	</div>
-	<div class="mt-n2 d-lg-none mb-2">
-		<div class="d-flex">
-			<form action="<%= request_products_products_url %>" method="post">
-				<%= authenticity_token %>
-				<button class='btn btn-primary btn-sm' type="submit">Notify Manager</button>
-			</form>
-			<form action="<%= order_all_requested_products_url%>" method="post">
-				<%= authenticity_token %>
-				<button class='btn btn-primary btn-sm ms-1' type="submit">Ordered All</button>
-			</form>
 		</div>
 	</div>
 	<%= render 'shared/products', products: @requested_products, location: 0 %>
@@ -32,20 +20,14 @@
 
 <%# Items in Route %>
 <section>
-	<div class="d-flex justify-content-between mt-4 mb-2">
+	<div class="dashboard-display mt-4 mb-2">
 		<%= page_title "Items in Route" %>
-		<div class="d-none d-lg-block">
+		<div>
 			<form action="<%= receive_all_ordered_products_url %>" method="post">
 				<%= authenticity_token %>
-				<button class='w-9-rem btn btn-primary btn-sm' type="submit">Receive All</button>
+				<button class='dashboard-button btn btn-primary btn-sm' type="submit">Receive All</button>
 			</form>
 		</div>
-	</div>
-	<div class="mt-n2 d-lg-none mb-2">
-		<form action="<%= receive_all_ordered_products_url %>" method="post">
-			<%= authenticity_token %>
-			<button class='btn btn-primary btn-sm' type="submit">Receive All</button>
-		</form>
 	</div>
 	<%= render 'shared/products', products: @ordered_products, location: 0 %>
 </section>
