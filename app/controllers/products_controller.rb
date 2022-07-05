@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
 	include HTTParty
 
 	def index 
+		@product = Product.new 
 		@products = Product.all.includes(:category)
 		@categories = Category.all
 		render :index
@@ -149,6 +150,7 @@ class ProductsController < ApplicationController
 
 	def edit 
 		@product = Product.find(params[:id])
+		@categories = Category.all 
 		render :edit
 	end
 
@@ -167,6 +169,8 @@ class ProductsController < ApplicationController
 				redirect_to category_url(@product.category_id)
 			when 2 
 				redirect_to products_url 
+			when 3 
+				redirect_to product_url(@product)
 			else 
 				fail 
 			end
@@ -178,6 +182,9 @@ class ProductsController < ApplicationController
 			when 2
 				flash.now[:errors] = @product.errors.full_messages
 				render :index
+			when 3
+				flash[:errors] = @product.errors.full_messages
+				redirect_to edit_product_url(@product)
 			else
 				fail
 			end
