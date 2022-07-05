@@ -15,7 +15,7 @@
 			</div>
 		</div>
 	</div>
-	<%= render 'shared/products', products: @requested_products, location: 0 %>
+	<%= render 'shared/products', products: @products.where(status: 1), location: 0 %>
 </section>
 
 <%# Items in Route %>
@@ -29,5 +29,5 @@
 			</form>
 		</div>
 	</div>
-	<%= render 'shared/products', products: @ordered_products, location: 0 %>
+	<%= render 'shared/products', products: @products.where(status: 2), location: 0 %>
 </section>
