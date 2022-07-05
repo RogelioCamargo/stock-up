@@ -1,7 +1,13 @@
 <%# Need to Order %>
-<div class="alert alert-warning" role="alert">
-	Warning: To see changes, you must refresh. Working on fixing this issue.
-</div>
+<% if flash[:notified_manager] %>
+	<div class="alert alert-success" role="alert">
+		Manager has been notified!
+	</div>
+<% elsif flash[:updated] %>
+	<div class="alert alert-success" role="alert">
+		Successfully updated! <a class="text-success" href="<%= dashboard_products_url %>">Click to view changes!</a>
+	</div>
+<% end %>
 <section>
 	<div class="dashboard-display mt-4 mb-2">
 		<%= page_title "Need to Order" %>

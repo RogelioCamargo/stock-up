@@ -47,7 +47,8 @@ class ProductsController < ApplicationController
 		if product.update(status: 1)
 			case params[:location].to_i
 			when 0 
-				redirect_back(fallback_location: root_path)
+				flash[:updated] = true
+				redirect_to dashboard_products_url
 			when 1
 				redirect_to category_path(product.category_id, anchor: product.id)
 			when 2 
@@ -65,7 +66,8 @@ class ProductsController < ApplicationController
 		if product.update(status: 2)
 			case params[:location].to_i
 			when 0 
-				redirect_back(fallback_location: root_path)
+				flash[:updated] = true
+				redirect_to dashboard_products_url
 			when 1
 				redirect_to category_path(product.category_id, anchor: product.id)
 			when 2 
@@ -83,7 +85,8 @@ class ProductsController < ApplicationController
 		if product.update(status: 0, quantity: nil)
 			case params[:location].to_i
 			when 0
-				redirect_back(fallback_location: root_path)
+				flash[:updated] = true
+				redirect_to dashboard_products_url
 			when 1
 				redirect_to category_path(product.category_id, anchor: product.id)
 			when 2 
@@ -144,6 +147,9 @@ class ProductsController < ApplicationController
 				]
 			 }.to_json, 
 			header: { 'Content-Type': 'application/json' })
+
+			flash[:notified_manager] = true
+			redirect_to dashboard_products_url
 	end
 
 	def edit 
@@ -162,7 +168,7 @@ class ProductsController < ApplicationController
 		if @product.update(product_params)
 			case params[:location].to_i
 			when 0 
-				redirect_back(fallback_location: root_path)
+				redirect_to dashboard_products_url
 			when 1
 				redirect_to category_path(@product.category_id, anchor: @product.id)
 			when 2 
@@ -191,12 +197,12 @@ class ProductsController < ApplicationController
 
 	def order_all_requested
 		Product.where(status: 1).update_all(status: 2)
-		redirect_back(fallback_location: root_path)
+		redirect_to dashboard_products_url
 	end
 
 	def receive_all_ordered
 		Product.where(status: 2).update_all(status: 0)
-		redirect_back(fallback_location: root_path)
+		redirect_to dashboard_products_url
 	end
 
 	def destroy
