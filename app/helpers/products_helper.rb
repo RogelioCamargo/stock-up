@@ -2,7 +2,7 @@ module ProductsHelper
 	def products_table_row(product, location)
 		"<tr 
 			id='#{product.id}' 
-			class='#{(!product.reorder_limit.nil? && product.quantity < product.reorder_limit) ? "bg-danger bg-opacity-25" : ""}'>
+			class='#{(product.reorder_limit && product.quantity && product.quantity < product.reorder_limit) ? "bg-danger bg-opacity-25" : ""}'>
 			<td class='w-25-rem'>
 				<a class='text-decoration-none text-black' href='#{product_url(product)}'>#{product.name}</a>
 			</td>

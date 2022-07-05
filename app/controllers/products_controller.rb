@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
 	end
 
 	def dashboard 
-		@products = Product.all
+		@products = Product.all.reload
 		render :dashboard
 	end
 
@@ -80,7 +80,7 @@ class ProductsController < ApplicationController
 
 	def received 
 		product = Product.find(params[:id])
-		if product.update(status: 0)
+		if product.update(status: 0, quantity: nil)
 			case params[:location].to_i
 			when 0
 				redirect_to dashboard_products_path
