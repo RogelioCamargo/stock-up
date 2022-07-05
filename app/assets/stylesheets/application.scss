@@ -73,3 +73,9 @@
 .w-85 {
 	width: 85%
 }
+
+@media (min-width: 992px) {
+	.login, .register {
+		width: 40%;
+	}
+}
