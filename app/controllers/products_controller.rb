@@ -39,8 +39,8 @@ class ProductsController < ApplicationController
 	end
 
 	def dashboard 
-		@requested_products = Product.where(status: 1).includes(:category)
-		@ordered_products = Product.where(status: 2).includes(:category)
+		@requested_products = Product.where(status: 1).includes(:category).load
+		@ordered_products = Product.where(status: 2).includes(:category).load
 		render :dashboard
 	end
 
@@ -84,7 +84,7 @@ class ProductsController < ApplicationController
 		product = Product.find(params[:id])
 		if product.update(status: 0)
 			case params[:location].to_i
-			when 0 
+			when 0
 				redirect_to dashboard_products_url
 			when 1
 				redirect_to category_url(product.category_id)
