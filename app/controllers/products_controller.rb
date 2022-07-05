@@ -2,8 +2,7 @@ require 'httparty'
 require 'dotenv'
 
 class ProductsController < ApplicationController
-	before_action :require_user!
-
+	before_action :require_user!, :set_cache_headers
 	include HTTParty
 
 	def index 
