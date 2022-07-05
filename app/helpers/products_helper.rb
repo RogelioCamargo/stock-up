@@ -1,7 +1,9 @@
 module ProductsHelper
 	def products_table_row(product, location)
 		"<tr>
-			<td class='w-25-rem'>#{product.name}</td>
+			<td class='w-25-rem'>
+				<a class='text-decoration-none text-black' href='#{product_url(product)}'>#{product.name}</a>
+			</td>
 			<td class='w-10-rem'>
 			#{product_quantity_form(product, location)}
 			</td>

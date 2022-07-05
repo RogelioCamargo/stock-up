@@ -24,7 +24,7 @@
 		</div>
 		<%# Mobile %>
 		<div class="d-md-none">
-			<table class="table">
+			<table class="table align-middle">
 				<thead>
 					<tr>
 						<th class="w-60" scope='col'>Name</th>
@@ -34,7 +34,9 @@
 				<tbody>
 					<% products.order(:created_at).each do |product| %>
 						<tr scope='row'>
-							<td><%= product.name%></td>
+							<td>
+								<a class='text-decoration-none text-black' href='<%= product_url(product) %>'><%= product.name %></a>
+							</td>
 							<td class="d-flex">
 								<%= product_quantity_form(product, location)%>
 								<%= product.status == 0 ?
