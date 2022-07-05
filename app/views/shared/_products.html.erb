@@ -33,7 +33,7 @@
 				</thead>
 				<tbody>
 					<% products.order(:created_at).each do |product| %>
-						<tr scope='row'>
+						<tr scope='row' id="<%= product.id %>">
 							<td>
 								<a class='text-decoration-none text-black' href='<%= product_url(product) %>'><%= product.name %></a>
 							</td>

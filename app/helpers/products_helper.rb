@@ -1,6 +1,6 @@
 module ProductsHelper
 	def products_table_row(product, location)
-		"<tr>
+		"<tr id='#{product.id}'>
 			<td class='w-25-rem'>
 				<a class='text-decoration-none text-black' href='#{product_url(product)}'>#{product.name}</a>
 			</td>

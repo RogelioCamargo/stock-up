@@ -18,9 +18,9 @@ class ProductsController < ApplicationController
 		if @product.save 
 			case params[:location].to_i
 			when 1
-				redirect_to category_url(@product.category_id)
+				redirect_to category_path(product.category_id, anchor: @product.id)
 			when 2 
-				redirect_to products_url 
+				redirect_to products_path(anchor: @product.id)  
 			else 
 				fail 
 			end
@@ -51,9 +51,9 @@ class ProductsController < ApplicationController
 			when 0 
 				redirect_to dashboard_products_url
 			when 1
-				redirect_to category_url(product.category_id)
+				redirect_to category_path(product.category_id, anchor: product.id)
 			when 2 
-				redirect_to products_url 
+				redirect_to products_path(anchor: product.id)
 			else 
 				fail 
 			end
@@ -69,9 +69,9 @@ class ProductsController < ApplicationController
 			when 0 
 				redirect_to dashboard_products_url
 			when 1
-				redirect_to category_url(product.category_id)
+				redirect_to category_path(product.category_id, anchor: product.id)
 			when 2 
-				redirect_to products_url 
+				redirect_to products_path(anchor: product.id) 
 			else 
 				fail 
 			end
@@ -87,9 +87,9 @@ class ProductsController < ApplicationController
 			when 0
 				redirect_to dashboard_products_url
 			when 1
-				redirect_to category_url(product.category_id)
+				redirect_to category_path(product.category_id, anchor: product.id)
 			when 2 
-				redirect_to products_url 
+				redirect_to products_path(anchor: product.id) 
 			else 
 				fail 
 			end
@@ -166,9 +166,9 @@ class ProductsController < ApplicationController
 			when 0 
 				redirect_to dashboard_products_url
 			when 1
-				redirect_to category_url(@product.category_id)
+				redirect_to category_path(@product.category_id, anchor: @product.id)
 			when 2 
-				redirect_to products_url 
+				redirect_to products_path(anchor: @product.id)  
 			when 3 
 				redirect_to product_url(@product)
 			else 
