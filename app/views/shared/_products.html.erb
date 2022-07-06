@@ -68,7 +68,7 @@
 					<% products.order(:created_at).each do |product| %>
 						<% is_below_quantity = (product.reorder_limit && product.quantity && product.quantity < product.reorder_limit) %>
 						<% is_recently_changed = (flash[:updated_id] && flash[:updated_id].to_i == product.id)  %>
-						<% bg_color = is_below_quantity ? "bg-danger bg-opacity-25" : (is_recently_changed ? "bg-secondary bg-opacity-25" : "")%>
+						<% bg_color = is_below_quantity ? "bg-danger bg-opacity-25" : (is_recently_changed ? "bg-secondary bg-opacity-25" : "" )%>
 						<tr 
 							scope='row' 
 							id="<%= product.id %>"
