@@ -1,40 +1,4 @@
 module ProductsHelper
-	def products_table_row(product, location)
-		"<tr 
-			id='#{product.id}' 
-			class='#{(product.reorder_limit && product.quantity && product.quantity < product.reorder_limit) ? "bg-danger bg-opacity-25" : ""}'>
-			<td class='w-25-rem'>
-				<a class='text-decoration-none text-black' href='#{product_url(product)}'>#{product.name}</a>
-			</td>
-			<td class='w-10-rem'>
-			#{product_quantity_form(product, location)}
-			</td>
-			<td class='text-nowrap'>#{product.category.name}</td>
-			<td class='d-flex'>
-				<div>
-					#{product.status == 0 ?
-					request_button(product, location) :
-					(product.status == 1 ? 
-						ordered_button(product, location) :
-						received_button(product, location))}
-				</div>
-				<div class='ms-1'>
-					<a class='btn btn-outline-primary btn-sm #{(product.shop_url == "" || product.shop_url == nil) && 'disabled'}' target='_blank' href='#{product.shop_url}'>
-						<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-link' viewBox='0 0 16 16'>
-							<path d='M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z'/>
-							<path d='M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z'/>
-						</svg>
-					</a>
-				</div>
-			</td>
-			<td class='w-10-rem'>#{product.reorder_amount} #{product.unit_of_measure}</td>
-			<td class='text-nowrap'>
-				#{product.updated_at.strftime("%m/%d/%Y")}
-				#{product.updated_at.in_time_zone("Pacific Time (US & Canada)").strftime("%I:%M%p")}
-			</td>
-		</tr>".html_safe
-	end
-
 	def product_quantity_form(product, location)
 		"<form action='#{product_url(product)}#{"?location=#{location}"}' method='post'>
 			<input type='hidden' name='_method' value='patch'>

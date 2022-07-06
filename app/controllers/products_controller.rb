@@ -17,9 +17,9 @@ class ProductsController < ApplicationController
 		if @product.save 
 			case params[:location].to_i
 			when 1
-				redirect_to category_path(product.category_id, anchor: @product.id)
+				redirect_to category_url(@product.category_id)
 			when 2 
-				redirect_to products_path(anchor: @product.id)  
+				redirect_to products_url  
 			else 
 				fail 
 			end
@@ -50,9 +50,11 @@ class ProductsController < ApplicationController
 				flash[:updated] = true
 				redirect_to dashboard_products_url
 			when 1
-				redirect_to category_path(product.category_id, anchor: product.id)
+				flash[:updated_id] = product.id 
+				redirect_to category_url(product.category_id)
 			when 2 
-				redirect_to products_path(anchor: product.id)
+				flash[:updated_id] = product.id 
+				redirect_to products_url
 			else 
 				fail 
 			end
@@ -69,9 +71,11 @@ class ProductsController < ApplicationController
 				flash[:updated] = true
 				redirect_to dashboard_products_url
 			when 1
-				redirect_to category_path(product.category_id, anchor: product.id)
+				flash[:updated_id] = product.id 
+				redirect_to category_url(product.category_id)
 			when 2 
-				redirect_to products_path(anchor: product.id) 
+				flash[:updated_id] = product.id 
+				redirect_to products_url 
 			else 
 				fail 
 			end
@@ -88,9 +92,11 @@ class ProductsController < ApplicationController
 				flash[:updated] = true
 				redirect_to dashboard_products_url
 			when 1
-				redirect_to category_path(product.category_id, anchor: product.id)
+				flash[:updated_id] = product.id 
+				redirect_to category_url(product.category_id)
 			when 2 
-				redirect_to products_path(anchor: product.id) 
+				flash[:updated_id] = product.id 
+				redirect_to products_url 
 			else 
 				fail 
 			end
@@ -170,9 +176,11 @@ class ProductsController < ApplicationController
 			when 0 
 				redirect_to dashboard_products_url
 			when 1
-				redirect_to category_path(@product.category_id, anchor: @product.id)
+				flash[:updated_id] = @product.id 
+				redirect_to category_url(@product.category_id)
 			when 2 
-				redirect_to products_path(anchor: @product.id)  
+				flash[:updated_id] = @product.id 
+				redirect_to products_url  
 			when 3 
 				redirect_to product_url(@product)
 			else 
@@ -197,11 +205,13 @@ class ProductsController < ApplicationController
 
 	def order_all_requested
 		Product.where(status: 1).update_all(status: 2)
+		flash[:updated] = true
 		redirect_to dashboard_products_url
 	end
 
 	def receive_all_ordered
 		Product.where(status: 2).update_all(status: 0)
+		flash[:updated] = true
 		redirect_to dashboard_products_url
 	end
 
