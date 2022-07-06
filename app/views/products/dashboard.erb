@@ -1,15 +1,18 @@
-<div class="alert alert-secondary" role="alert">
-	<a class="text-dark" href="<%= dashboard_products_url %>">Click to view changes!</a>
-</div>
+<a class="text-success text-decoration-none" href="<%= dashboard_products_url %>">
+	<div class="alert alert-success" role="alert">
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+			<path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+			<path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+		</svg>
+		<span class="">Click to View Changes!</span>
+	</div>
+</a>
 <% if flash[:notified_manager] %>
 	<div class="alert alert-success" role="alert">
 		Manager has been notified!
 	</div>
-<% elsif flash[:updated] %>
-	<div class="alert alert-success" role="alert">
-		Successfully updated! <a class="text-success" href="<%= dashboard_products_url %>">Click to view changes!</a>
-	</div>
 <% end %>
+
 <%# Need to Order %>
 <section>
 	<div class="dashboard-display mt-4 mb-2">
