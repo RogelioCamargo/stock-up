@@ -1,4 +1,6 @@
-<%# Need to Order %>
+<div class="alert alert-secondary" role="alert">
+	<a class="text-dark" href="<%= dashboard_products_url %>">Click to view changes!</a>
+</div>
 <% if flash[:notified_manager] %>
 	<div class="alert alert-success" role="alert">
 		Manager has been notified!
@@ -8,6 +10,7 @@
 		Successfully updated! <a class="text-success" href="<%= dashboard_products_url %>">Click to view changes!</a>
 	</div>
 <% end %>
+<%# Need to Order %>
 <section>
 	<div class="dashboard-display mt-4 mb-2">
 		<%= page_title "Need to Order" %>
@@ -24,7 +27,7 @@
 			</div>
 		</div>
 	</div>
-	<%= render 'shared/products', products: @products.where(status: 1), location: 0 %>
+	<%= render 'shared/products', products: @products.where(status: 1), location: 4 %>
 </section>
 
 <%# Items in Route %>
@@ -38,5 +41,5 @@
 			</form>
 		</div>
 	</div>
-	<%= render 'shared/products', products: @products.where(status: 2), location: 0 %>
+	<%= render 'shared/products', products: @products.where(status: 2), location: 4 %>
 </section>

@@ -46,15 +46,15 @@ class ProductsController < ApplicationController
 		product = Product.find(params[:id])
 		if product.update(status: 1)
 			case params[:location].to_i
-			when 0 
-				flash[:updated] = true
-				redirect_to dashboard_products_url
 			when 1
 				flash[:updated_id] = product.id 
 				redirect_to category_url(product.category_id)
-			when 2 
+			when 2
 				flash[:updated_id] = product.id 
 				redirect_to products_url
+			when 4
+				flash[:updated] = true
+				redirect_to dashboard_products_url
 			else 
 				fail 
 			end
@@ -67,15 +67,15 @@ class ProductsController < ApplicationController
 		product = Product.find(params[:id])
 		if product.update(status: 2)
 			case params[:location].to_i
-			when 0 
-				flash[:updated] = true
-				redirect_to dashboard_products_url
 			when 1
 				flash[:updated_id] = product.id 
 				redirect_to category_url(product.category_id)
-			when 2 
+			when 2
 				flash[:updated_id] = product.id 
 				redirect_to products_url 
+			when 4
+				flash[:updated] = true
+				redirect_to dashboard_products_url
 			else 
 				fail 
 			end
@@ -88,15 +88,15 @@ class ProductsController < ApplicationController
 		product = Product.find(params[:id])
 		if product.update(status: 0, quantity: nil)
 			case params[:location].to_i
-			when 0
-				flash[:updated] = true
-				redirect_to dashboard_products_url
 			when 1
 				flash[:updated_id] = product.id 
 				redirect_to category_url(product.category_id)
-			when 2 
+			when 2
 				flash[:updated_id] = product.id 
 				redirect_to products_url 
+			when 4
+				flash[:updated] = true
+				redirect_to dashboard_products_url
 			else 
 				fail 
 			end
@@ -173,16 +173,16 @@ class ProductsController < ApplicationController
 		@product = Product.find(params[:id])
 		if @product.update(product_params)
 			case params[:location].to_i
-			when 0 
-				redirect_to dashboard_products_url
 			when 1
 				flash[:updated_id] = @product.id 
 				redirect_to category_url(@product.category_id)
-			when 2 
+			when 2
 				flash[:updated_id] = @product.id 
 				redirect_to products_url  
-			when 3 
+			when 3
 				redirect_to product_url(@product)
+			when 4
+				redirect_to dashboard_products_url
 			else 
 				fail 
 			end
