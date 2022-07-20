@@ -117,8 +117,8 @@ class ProductsController < ApplicationController
 			end
 
 			second_column_text = "" 
-			second_column_text += "*Quantity*: #{product.quantity}\n" unless product.quantity.nil? 
-			second_column_text += "*Reorder*: #{product.reorder_amount}" unless product.reorder_amount.nil? 
+			second_column_text += "*Current Quantity*: #{product.quantity}\n" unless product.quantity.nil? 
+			second_column_text += "*Reorder Quantity*: #{product.reorder_amount}" unless product.reorder_amount.nil? 
 
 			unless second_column_text.empty? 
 				fields << { type: "mrkdwn", text: second_column_text }
