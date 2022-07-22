@@ -7,7 +7,6 @@ class CategoriesController < ApplicationController
 
 	def show 
 		@product = Product.new
-		@categories = Category.all 
 		@category = Category.find(params[:id])
 		render :show 
 	end

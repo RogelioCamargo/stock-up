@@ -8,7 +8,6 @@ class ProductsController < ApplicationController
 	def index 
 		@product = Product.new 
 		@products = Product.all.includes(:category)
-		@categories = Category.all
 		render :index
 	end
 
@@ -158,12 +157,6 @@ class ProductsController < ApplicationController
 			redirect_to dashboard_products_url
 	end
 
-	def edit 
-		@product = Product.find(params[:id])
-		@categories = Category.all 
-		render :edit
-	end
-
 	def show 
 		@product = Product.find(params[:id])
 		render :show
@@ -180,7 +173,7 @@ class ProductsController < ApplicationController
 				flash[:updated_id] = @product.id 
 				redirect_to products_url  
 			when 3
-				redirect_to product_url(@product)
+				render :show
 			when 4
 				redirect_to dashboard_products_url
 			else 
@@ -195,8 +188,8 @@ class ProductsController < ApplicationController
 				flash.now[:errors] = @product.errors.full_messages
 				render :index
 			when 3
-				flash[:errors] = @product.errors.full_messages
-				redirect_to edit_product_url(@product)
+				flash.now[:errors] = @product.errors.full_messages
+				render :show
 			else
 				fail
 			end
