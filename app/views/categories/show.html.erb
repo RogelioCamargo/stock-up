@@ -9,12 +9,12 @@
 		</div>
 	</div>
 	<ul class="nav horizontal-scroll nav-pills pb-2">
-		<% @categories.each do |category| %>
+		<% Category.all.each do |category| %>
 			<li class="nav-item">
 				<a class="nav-link text-nowrap <%= current_category.id == category.id && "active" %>" href="<%= category_url(category) %>"><%= category.name %></a>
 			</li>
 		<% end %>
 	</ul>
 	<%= render 'shared/products', products: products, location: 1 %>
-	<%= render 'products/form', product: @product, categories: @categories, current_category_id: @category.id, location: 1 %>
+	<%= render 'products/form', product: @product, current_category_id: @category.id, location: 1 %>
 </section>

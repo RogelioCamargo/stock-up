@@ -25,7 +25,7 @@
 				<label class="fw-bold" for="product_category">Category<span class="fw-normal ms-1">(required)</span></label>
 				<select class="form-select form-select-sm" name="product[category_id]" id="product_category">
 					<option selected disabled>Select One</option>
-					<% categories.each do |category| %>
+					<% Category.all.each do |category| %>
 						<option 
 							value="<%= category.id %>"
 							<%= !current_category_id.nil? && (category.id == current_category_id && "selected") %>>
@@ -136,7 +136,7 @@
 				<label class="fw-bold" for="form-label">Category<span class="fw-normal ms-1">(required)</span></label>
 				<select class="form-select form-select-sm" name="product[category_id]" id="product_category">
 					<option selected disabled placeholder="Select One">Select One</option>
-					<% categories.each do |category| %>
+					<% Category.all.each do |category| %>
 						<option 
 							value="<%= category.id %>"
 							<%= !current_category_id.nil? && (category.id == current_category_id && "selected") %>>
