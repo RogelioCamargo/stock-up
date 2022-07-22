@@ -11,7 +11,9 @@
 						<th class='w-10-rem'>Quantity</th>
 						<th >Category</th>
 						<th>Actions</th>
-						<th class='w-10-rem'>Reorder Amount</th>
+						<th>RL</th>
+						<th>RA</th>
+						<th>UOM</th>
 						<th>Modified</th>
 					</tr>
 				</thead>
@@ -45,7 +47,9 @@
 									</a>
 								</div>
 							</td>
-							<td class='w-10-rem'><%= product.reorder_amount %> <%= product.unit_of_measure %></td>
+							<td><%= product.reorder_limit %></td>
+							<td><%= product.reorder_amount %></td>
+							<td><%= product.unit_of_measure %></td>
 							<td class='text-nowrap'>
 								<%= product.updated_at.strftime("%m/%d/%Y") %>
 								<%= product.updated_at.in_time_zone("Pacific Time (US & Canada)").strftime("%I:%M%p") %>
